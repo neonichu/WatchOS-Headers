@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSSet, NSString, NSTimer;
+@class NSDictionary, NSError, NSObject<OS_dispatch_queue>, NSSet, NSString, NSTimer;
 
 @interface SYPersistentStore : NSObject
 {
@@ -17,7 +17,6 @@
     NSObject<OS_dispatch_queue> *_syncQ;
     struct sqlite3 *_db;
     struct sqlite3_stmt *_getInFullSync;
-    struct sqlite3_stmt *_setInFullSync;
     struct sqlite3_stmt *_getChangeCount;
     struct sqlite3_stmt *_getNextExpireTime;
     struct sqlite3_stmt *_purgeExpiredChanges;
@@ -31,6 +30,20 @@
     struct sqlite3_stmt *_setVectorClock;
     struct sqlite3_stmt *_setPeerSeqNo;
     struct sqlite3_stmt *_getPeerSeqNo;
+    struct sqlite3_stmt *_enterFullSync;
+    struct sqlite3_stmt *_exitFullSync;
+    struct sqlite3_stmt *_getIgnoringSyncID;
+    struct sqlite3_stmt *_getCurrentSyncID;
+    struct sqlite3_stmt *_getLastEndedSyncID;
+    struct sqlite3_stmt *_getWaitingForSyncID;
+    struct sqlite3_stmt *_setWaitingForSyncID;
+    struct sqlite3_stmt *_setAllSentForSyncID;
+    struct sqlite3_stmt *_getAllSentForCurrentSync;
+    struct sqlite3_stmt *_getLastSyncError;
+    struct sqlite3_stmt *_setSyncUserInfo;
+    struct sqlite3_stmt *_getSyncUserInfo;
+    struct sqlite3_stmt *_setSyncIDSOptions;
+    struct sqlite3_stmt *_getSyncIDSOptions;
     _Bool _cachedVersionStale;
     NSString *_peerID;
     NSSet *_cachedChangedSyncIDs;
@@ -52,7 +65,20 @@
 @property(readonly, nonatomic) unsigned long long lastSeenRemoteVersion;
 @property(readonly, nonatomic) unsigned long long currentLocalVersion;
 @property(nonatomic) _Bool completedSync;
-@property(nonatomic) _Bool inFullSync;
+@property(copy, nonatomic) NSDictionary *fullSyncIDSOptions;
+@property(copy, nonatomic) NSDictionary *fullSyncUserInfo;
+@property(copy, nonatomic) NSString *waitingForSyncEndID;
+@property(readonly, nonatomic) NSString *lastSyncEndID;
+@property(readonly, nonatomic) _Bool inFullSync;
+@property(readonly, nonatomic) NSString *currentFullSyncID;
+@property(readonly, nonatomic) NSError *lastSyncError;
+@property(readonly, nonatomic) _Bool lastSyncFailed;
+@property(readonly, nonatomic) _Bool currentSyncSendComplete;
+- (void)sendCompletedForSyncWithID:(id)arg1;
+- (_Bool)ignoringFullSyncWithID:(id)arg1;
+- (_Bool)reassignCurrentSyncID:(id)arg1;
+- (void)exitFullSyncWithID:(id)arg1 error:(id)arg2;
+- (void)enterFullSyncWithID:(id)arg1 ignoring:(_Bool)arg2;
 @property(retain, nonatomic) NSString *vectorClockJSON;
 @property(readonly, nonatomic) unsigned long long changeCount;
 - (void)expirationTimerFired:(id)arg1;
@@ -64,10 +90,13 @@
 - (void)setLastSequenceNumber:(unsigned long long)arg1 fromPeer:(id)arg2;
 - (unsigned long long)nextSequenceNumber;
 - (void)_cacheTTL;
+- (void)_fixPeerInfo;
+- (_Bool)_inTransaction:(_Bool)arg1 do:(CDUnknownBlockType)arg2;
 - (void)_convertTimestamps;
 - (_Bool)_openDBAtPath:(id)arg1;
 - (int)_getSchemaVersion;
 - (_Bool)_tableEmpty:(id)arg1;
+- (struct sqlite3 *)_dbRef;
 - (void)dealloc;
 - (id)initWithPath:(id)arg1 loggingFacility:(struct __CFString *)arg2 changeTrackingEnabled:(_Bool)arg3;
 

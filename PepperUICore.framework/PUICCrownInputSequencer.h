@@ -89,7 +89,7 @@
 - (void)_notifyObserversOfOffsetChange;
 - (void)_notifyObserversOfActiveDetentChange;
 - (void)_updateDetents;
-- (void)_updateOffsetWithRotationalDelta:(double)arg1 eventSourceTime:(double)arg2;
+- (void)_updateOffsetWithRotationalDelta:(double)arg1 eventSourceTimestamp:(double)arg2 adjustForCrownOrientation:(_Bool)arg3;
 - (void)_updateOffsetRubberBandAnimatorBoundaries;
 - (id)_offsetRubberBandAnimator;
 - (void)_updateOffsetWithDelta:(double)arg1 originalRotationalDelta:(double)arg2 eventSourceTime:(double)arg3;
@@ -106,11 +106,11 @@
 @property(copy, nonatomic) NSArray *staticDetents;
 - (void)reloadData;
 @property(readonly, nonatomic, getter=isRubberBanding) _Bool rubberBanding;
+- (void)_updateVisibleCrownIndicator;
 - (void)setNonCrownIndicatorVisible:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)setCrownIndicatorVisible:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)_setCrownIndicatorVisible:(_Bool)arg1 animated:(_Bool)arg2 usingCrown:(_Bool)arg3;
 - (void)updateWithCrownInputEvent:(id)arg1;
-- (void)updateOffsetWithRotationalDelta:(double)arg1;
 - (double)percentageOffsetForOffset:(double)arg1;
 @property(readonly, nonatomic) double length;
 @property(readonly, nonatomic) double velocity;

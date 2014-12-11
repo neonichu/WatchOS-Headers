@@ -30,8 +30,10 @@
     float _pillHighlightedGlowOpacity;
     id <PUICSliderDelegate> _delegate;
     unsigned long long _numberOfSteps;
+    double _offsetPerCrownRevolution;
 }
 
+@property(nonatomic) double offsetPerCrownRevolution; // @synthesize offsetPerCrownRevolution=_offsetPerCrownRevolution;
 @property(nonatomic) float pillHighlightedGlowOpacity; // @synthesize pillHighlightedGlowOpacity=_pillHighlightedGlowOpacity;
 @property(nonatomic) _Bool shouldFadeAccessoryImages; // @synthesize shouldFadeAccessoryImages=_shouldFadeAccessoryImages;
 @property(nonatomic) _Bool shouldAutomaticallAdjustValueOnTouch; // @synthesize shouldAutomaticallAdjustValueOnTouch=_shouldAutomaticallAdjustValueOnTouch;
@@ -73,7 +75,6 @@
 - (void)touchesMoved:(id)arg1 withEvent:(id)arg2;
 - (void)animationDidStop:(id)arg1 finished:(_Bool)arg2;
 - (void)touchesBegan:(id)arg1 withEvent:(id)arg2;
-- (_Bool)pointInside:(struct CGPoint)arg1 withEvent:(id)arg2;
 - (void)layoutSubviews;
 - (id)initWithSliderStyle:(long long)arg1;
 

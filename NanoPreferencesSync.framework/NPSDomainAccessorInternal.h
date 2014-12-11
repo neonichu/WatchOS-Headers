@@ -34,6 +34,7 @@
 + (_Bool)valueIsValid:(id)arg1;
 + (_Bool)domainIsValid:(id)arg1;
 + (id)urlForDomain:(id)arg1 pairingDataStore:(id)arg2;
++ (void)invalidateAndReleaseUnreferencedAccessors;
 + (void)decrementInternalAccessorReferenceCount:(id)arg1;
 + (id)internalAccessorForPairingID:(id)arg1 pairingDataStore:(id)arg2 domain:(id)arg3;
 + (void)applicationDidResume;

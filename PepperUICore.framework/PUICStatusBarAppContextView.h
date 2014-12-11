@@ -54,6 +54,7 @@
 - (void)_createNavBackButtonView;
 - (void)_destroyActivityIndicatorView;
 - (void)_createActivityIndicatorView;
+- (id)hitTest:(struct CGPoint)arg1 withEvent:(id)arg2;
 - (id)_hitTestPointInAccessoryView:(struct CGPoint)arg1;
 - (id)_hitTestPointInNavBackView:(struct CGPoint)arg1;
 - (id)initWithDataSource:(id)arg1;

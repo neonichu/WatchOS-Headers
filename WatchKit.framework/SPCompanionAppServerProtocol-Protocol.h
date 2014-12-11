@@ -10,6 +10,7 @@
 
 @protocol SPCompanionAppServerProtocol <NSObject>
 - (void)launchGizmoAppForCompanionAppWithIdentifier:(NSString *)arg1 withURLString:(NSString *)arg2;
+- (void)launchCompanionAppForGizmoAppWithIdentifier:(NSString *)arg1 withUserInfoData:(NSData *)arg2 reply:(void (^)(NSDictionary *, NSError *))arg3;
 - (void)sendTimingData:(NSDictionary *)arg1 identifier:(NSString *)arg2 clientIdentifiers:(NSArray *)arg3 index:(long long)arg4;
 - (void)fetchNotificationForNotificationID:(id)arg1 completion:(void (^)(NSDictionary *, NSData *, NSError *))arg2;
 - (void)sendData:(NSData *)arg1 identifier:(NSString *)arg2 clientIdentifiers:(NSArray *)arg3;

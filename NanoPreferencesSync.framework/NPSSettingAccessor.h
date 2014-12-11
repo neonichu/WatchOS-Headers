@@ -28,6 +28,7 @@
 @property(retain, nonatomic) NSString *domain; // @synthesize domain=_domain;
 - (void).cxx_destruct;
 - (id)serializedObjectForKey:(id)arg1 error:(id *)arg2;
+- (id)copyKeyList;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
 - (id)objectForKey:(id)arg1;
 - (_Bool)synchronize;

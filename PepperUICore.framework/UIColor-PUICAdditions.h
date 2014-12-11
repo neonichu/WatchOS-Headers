@@ -7,6 +7,7 @@
 #import "UIColor.h"
 
 @interface UIColor (PUICAdditions)
++ (id)systemPurpleColor;
 + (id)puic_systemGrayColor;
 + (id)puic_systemPurpleColor;
 + (id)puic_systemYellowColor;

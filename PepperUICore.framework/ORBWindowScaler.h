@@ -13,12 +13,14 @@
     NSArray *_scalingViews;
     double _topWindowLevel;
     float _scale;
+    float _presentedScale;
 }
 
 + (id)sharedScaler;
-@property(nonatomic) float scale; // @synthesize scale=_scale;
 - (void).cxx_destruct;
-- (void)setDefaultScale;
+- (void)_setScale:(float)arg1 duration:(double)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)setDefaultScaleWithRubberBanding:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)setScale:(float)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)setupScalingWindows;
 - (void)setCustomViewForScaling:(id)arg1;
 @property(readonly, nonatomic) double topWindowLevel;

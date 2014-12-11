@@ -22,8 +22,7 @@
 - (id)dataForImageWithName:(id)arg1;
 - (void)removeAllImagesFromPermanentCache;
 - (void)removeImageFromPermanentCacheWithName:(id)arg1;
-- (void)addImageReferenceToPermanentCache:(id)arg1 withName:(id)arg2;
-- (void)addImageToPermanentCache:(id)arg1 withName:(id)arg2;
+- (_Bool)addImageToPermanentCache:(id)arg1 withName:(id)arg2;
 - (_Bool)imageInPermanentCache:(id)arg1;
 - (void)syncCache:(id)arg1;
 - (void)clearedCache:(id)arg1;

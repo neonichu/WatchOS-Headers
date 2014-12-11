@@ -11,6 +11,7 @@
     UIView *_content;
     unsigned long long _state;
     unsigned long long _nextState;
+    double _spinUpProgress;
     _Bool _hidesWhenStopped;
     long long _activityIndicatorViewStyle;
     id <PUICActivityIndicatorViewDelegate> _delegate;
@@ -20,6 +21,8 @@
 @property(nonatomic) _Bool hidesWhenStopped; // @synthesize hidesWhenStopped=_hidesWhenStopped;
 @property(nonatomic) long long activityIndicatorViewStyle; // @synthesize activityIndicatorViewStyle=_activityIndicatorViewStyle;
 - (void).cxx_destruct;
+- (double)spinUpProgress;
+- (void)setSpinUpProgress:(double)arg1;
 - (void)_didAnimateOut;
 - (void)_willAnimateOutWithDuration:(double)arg1;
 - (void)_didAnimateIn;

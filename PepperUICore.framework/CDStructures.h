@@ -73,8 +73,3 @@ typedef struct {
     unsigned int _field19;
 } CDStruct_1f4d094c;
 
-typedef struct {
-    double _field1;
-    double _field2;
-} CDStruct_c3b9c2ee;
-

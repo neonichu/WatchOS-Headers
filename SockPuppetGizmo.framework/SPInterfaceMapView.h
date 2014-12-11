@@ -15,6 +15,7 @@
     _Bool _enabled;
     NSDictionary *_itemDescriptionForIB;
     NSBundle *_bundle;
+    NSString *_stringsFileName;
     NSDictionary *_companionProperty;
     long long _interfaceAlignment;
     long long _verticalInterfaceAlignment;
@@ -44,6 +45,7 @@
 @property(nonatomic) long long verticalInterfaceAlignment; // @synthesize verticalInterfaceAlignment=_verticalInterfaceAlignment;
 @property(nonatomic) long long interfaceAlignment; // @synthesize interfaceAlignment=_interfaceAlignment;
 @property(copy, nonatomic) NSDictionary *companionProperty; // @synthesize companionProperty=_companionProperty;
+@property(copy, nonatomic) NSString *stringsFileName; // @synthesize stringsFileName=_stringsFileName;
 @property(retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
 @property(retain, nonatomic) NSDictionary *itemDescriptionForIB; // @synthesize itemDescriptionForIB=_itemDescriptionForIB;
 - (void).cxx_destruct;
@@ -54,9 +56,10 @@
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)setInterfaceItemValue:(id)arg1 property:(id)arg2;
 - (void)layoutSubviews;
+- (_Bool)hasIntrinsicHeight;
 - (void)layoutAnnotations;
 - (_Bool)regionIsValid;
-- (id)initWithItemDescription:(id)arg1 bundle:(id)arg2;
+- (id)initWithItemDescription:(id)arg1 bundle:(id)arg2 stringsFileName:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

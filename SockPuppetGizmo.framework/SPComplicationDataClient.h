@@ -29,6 +29,7 @@
 - (void)_broadcastToSubscriber:(id)arg1;
 - (void)_broadcastToAllSubscribers;
 - (void)fetchCachedDataWithHandler:(CDUnknownBlockType)arg1 forToken:(id)arg2;
+- (void)_requestComplicationData;
 - (void)_updateServiceDataInterval;
 - (void)requestDataInterval:(long long)arg1 forToken:(struct NSNumber *)arg2;
 - (void)_updateServiceRegistration;

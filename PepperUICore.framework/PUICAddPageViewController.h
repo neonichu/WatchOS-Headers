@@ -22,6 +22,8 @@
 @property(nonatomic) __weak id <PUICAddPageViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) PUICPageScrollViewController *pageScrollViewController; // @synthesize pageScrollViewController=_pageScrollViewController;
 - (void).cxx_destruct;
+- (void)_stopOnPageBoundary;
+- (void)idleDidChange:(id)arg1;
 - (void)_activationButtonPress;
 - (void)deactivateWithAdditionalAnimations:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)activateWithAdditionalAnimations:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
@@ -29,6 +31,7 @@
 @property(readonly, nonatomic) unsigned long long currentPageIndex;
 - (void)viewDidLayoutSubviews;
 - (void)loadView;
+- (void)dealloc;
 - (id)init;
 
 @end

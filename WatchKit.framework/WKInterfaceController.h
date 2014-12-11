@@ -15,6 +15,8 @@
     struct CGRect _contentFrame;
 }
 
++ (_Bool)openParentApplication:(id)arg1 reply:(CDUnknownBlockType)arg2;
++ (void)reloadRootControllersWithNames:(id)arg1 contexts:(id)arg2;
 + (struct CGRect)screenBounds;
 + (double)screenScale;
 @property(retain, nonatomic) NSString *viewControllerID; // @synthesize viewControllerID=_viewControllerID;
@@ -31,7 +33,7 @@
 - (id)contextForSegueWithIdentifier:(id)arg1 inTable:(id)arg2 rowIndex:(long long)arg3;
 - (id)contextForSegueWithIdentifier:(id)arg1;
 - (void)dismissTextInputController;
-- (void)presentTextInputControllerWithSuggestions:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)presentTextInputControllerWithSuggestions:(id)arg1 allowedInputMode:(long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)dismissController;
 - (void)presentControllerWithNames:(id)arg1 contexts:(id)arg2;
 - (void)presentControllerWithName:(id)arg1 context:(id)arg2;
@@ -47,6 +49,8 @@
 - (void)didDeactivate;
 - (void)willActivate;
 - (id)initWithContext:(id)arg1;
+- (void)awakeWithContext:(id)arg1;
+- (id)init;
 - (void)_setContentFrame:(struct CGRect)arg1;
 
 @end

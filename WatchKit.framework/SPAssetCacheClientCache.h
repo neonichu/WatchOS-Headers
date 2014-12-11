@@ -31,9 +31,10 @@
 - (void)deletedAssetWithName:(id)arg1;
 - (void)deleteAssetWithName:(id)arg1;
 - (void)deleteAsset:(id)arg1;
+- (_Bool)checkAvailableSpaceForAssetWithName:(id)arg1 length:(unsigned long long)arg2;
 - (void)clearSpaceForAsset:(unsigned long long)arg1;
 - (void)addedAssetWithName:(id)arg1;
-- (void)addAsset:(id)arg1 withName:(id)arg2 sendImage:(_Bool)arg3;
+- (_Bool)addAsset:(id)arg1 withName:(id)arg2 sendImage:(_Bool)arg3;
 - (void)syncAssets:(id)arg1;
 - (id)pathForAssetDataWithName:(id)arg1;
 - (id)cacheDirectory;

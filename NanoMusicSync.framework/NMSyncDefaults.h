@@ -30,7 +30,7 @@
 @property(readonly, nonatomic) NSDate *modificationDate; // @synthesize modificationDate=_modificationDate;
 - (void).cxx_destruct;
 @property(copy, nonatomic) NSNumber *assetSyncLimit; // @synthesize assetSyncLimit=_assetSyncLimit;
-- (void)setNeedsSynchronize;
+- (void)_setNeedsSynchronize;
 - (void)_writeChanges;
 - (void)_readDefaults;
 - (void)_handleRemoteChangeIgnoringSenderPID:(_Bool)arg1;

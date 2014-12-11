@@ -8,9 +8,12 @@
 
 @interface PUICUIScalerExcludedBackdropWindow : UIWindow
 {
+    long long _visibilityCount;
 }
 
 + (id)backdropWindow;
+- (void)popVisible;
+- (void)pushVisible;
 
 @end
 

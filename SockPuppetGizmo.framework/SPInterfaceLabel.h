@@ -16,6 +16,7 @@
     NSDictionary *_itemDescriptionForIB;
     long long _glanceLabelSize;
     NSBundle *_bundle;
+    NSString *_stringsFileName;
     NSDictionary *_companionProperty;
     long long _interfaceAlignment;
     long long _verticalInterfaceAlignment;
@@ -38,6 +39,7 @@
 @property(nonatomic) long long verticalInterfaceAlignment; // @synthesize verticalInterfaceAlignment=_verticalInterfaceAlignment;
 @property(nonatomic) long long interfaceAlignment; // @synthesize interfaceAlignment=_interfaceAlignment;
 @property(copy, nonatomic) NSDictionary *companionProperty; // @synthesize companionProperty=_companionProperty;
+@property(copy, nonatomic) NSString *stringsFileName; // @synthesize stringsFileName=_stringsFileName;
 @property(retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
 @property(nonatomic) long long glanceLabelSize; // @synthesize glanceLabelSize=_glanceLabelSize;
 @property(nonatomic) _Bool isStaticNotificationAlertItem; // @synthesize isStaticNotificationAlertItem=_isStaticNotificationAlertItem;
@@ -47,8 +49,9 @@
 - (id)defaultGlanceTextAttributes;
 - (id)filteredAttributedTextForGlance;
 - (void)setInterfaceItemValue:(id)arg1 property:(id)arg2;
+- (_Bool)hasIntrinsicHeight;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
-- (id)initWithItemDescription:(id)arg1 bundle:(id)arg2;
+- (id)initWithItemDescription:(id)arg1 bundle:(id)arg2 stringsFileName:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -16,7 +16,7 @@
 - (void)xpcNotifyPasscode:(NSNumber *)arg1 withDeviceID:(NSUUID *)arg2;
 - (void)xpcNotifyActivationCompleted:(NSUUID *)arg1 withSuccess:(_Bool)arg2;
 - (void)xpcEnterCompatibilityState:(unsigned short)arg1 withDeviceID:(NSUUID *)arg2;
-- (void)xpcAbortPairing;
+- (void)xpcAbortPairing:(void (^)(unsigned long long))arg1;
 - (void)xpcGizmoPasscodeAdvertiseAndPairWithName:(NSString *)arg1 operationHasBegun:(void (^)(NSError *, unsigned long long))arg2;
 - (void)xpcGizmoOOBAdvertiseAndPairWithName:(NSString *)arg1 operationHasBegun:(void (^)(NSError *, unsigned long long))arg2;
 - (void)xpcCompanionPasscodePairWithDeviceID:(NSUUID *)arg1 operationHasBegun:(void (^)(NSError *, unsigned long long))arg2;

@@ -11,7 +11,7 @@
 #import "PUICTableViewCellActionBarDelegate.h"
 #import "UIGestureRecognizerDelegate.h"
 
-@class NSIndexPath, NSString, NSTimer, PUICSectionIndexOverlayView, PUICTableViewCellActionBar, PUICTableViewCellDeleteScanLineView, UIPanGestureRecognizer, UIView;
+@class NSIndexPath, NSString, NSTimer, PUICSectionIndexOverlayView, PUICTableViewCellActionBar, UIPanGestureRecognizer, UIView;
 
 @interface PUICTableView : UITableView <PUICCrownInputSequencerDelegate, PUICCrownInputSequencerDataSource, UIGestureRecognizerDelegate, PUICTableViewCellActionBarDelegate>
 {
@@ -23,7 +23,6 @@
     UIPanGestureRecognizer *_swipeActionPanRecognizer;
     double _initialTranslation;
     PUICTableViewCellActionBar *_actionBar;
-    PUICTableViewCellDeleteScanLineView *_deleteScanline;
     _Bool _swipingLeft;
     struct {
         unsigned int dataSourceSectionForSectionIndexTitle:1;
@@ -58,10 +57,6 @@
 - (void)_cancelDelayedSectionIndexOverlayHiding;
 - (void)_scheduleDelayedSectionIndexOverlayHiding;
 - (void)_updateSectionIndexOverlayViewText;
-- (void)_numberOfRowsDidChange;
-- (id)_indexPathForFirstVisibleRowAtCrownInputSequencerOffset:(double)arg1;
-- (id)_indexPathsForVisibleRowsAtCrownInputSequencerOffset:(double)arg1;
-- (void)crownInputSequencer:(id)arg1 previousDetent:(id *)arg2 nextDetent:(id *)arg3 forOffset:(double)arg4;
 - (void)_crownInputSequencerIdleDidChangeNotification:(id)arg1;
 - (void)_crownInputSequencerOffsetDidChangeNotification:(id)arg1;
 - (void)_puic_configureCrownInputSequencer;
@@ -81,7 +76,6 @@
 - (double)_rubberBandOffsetForOffset:(double)arg1 usingActionBar:(id)arg2;
 - (void)_swipeRecognizerChanged:(id)arg1;
 - (void)_swipeRecognizerBegan:(id)arg1;
-- (_Bool)_actionBarShouldBeTransparentWhenHidden;
 - (void)swipeRecognizerDidRecognize:(id)arg1;
 - (_Bool)gestureRecognizerShouldBegin:(id)arg1;
 - (_Bool)_canSwipeToEditRowAtIndexPath:(id)arg1;

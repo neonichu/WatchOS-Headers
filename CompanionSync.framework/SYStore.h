@@ -10,20 +10,13 @@
 #import "NMSMessageCenterDelegate.h"
 #import "SYChangeTracking.h"
 
-@class NMSMessageCenter, NSDictionary, NSMutableDictionary, NSMutableIndexSet, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSTimer, NSURL, NSUUID, SYPersistentStore, SYVectorClock;
+@class NMSMessageCenter, NSDictionary, NSMutableIndexSet, NSObject<OS_dispatch_queue>, NSString, NSTimer, NSUUID, SYPersistentStore, SYVectorClock;
 
 @interface SYStore : NSObject <IDSServiceDelegate, NMSMessageCenterDelegate, SYChangeTracking>
 {
     NSObject<OS_dispatch_queue> *_qosTargetQueue;
     unsigned long long _batchCounter;
     NSMutableIndexSet *_batchChunkUnackedIndices;
-    NSMutableIndexSet *_acksToIgnore;
-    NSMutableDictionary *_idsChangeSentCallbacks;
-    _Bool _isNanoAppRegistry;
-    _Bool _recordingTransmissions;
-    NSURL *_incomingTransmissionsURL;
-    NSURL *_outgoingTransmissionsURL;
-    NSOperationQueue *_nsq;
     _Bool _tracksChanges;
     struct {
         unsigned int delegateWillUpdate:1;
@@ -60,21 +53,11 @@
     NSUUID *_pairedDeviceID;
     NMSMessageCenter *_messageCenter;
     SYVectorClock *_vectorClock;
-    NSString *_fullSyncIdentifier;
-    NSString *_lastSyncEndID;
-    NSString *_waitingForSyncEndID;
-    NSDictionary *_fullSyncUserInfo;
-    NSDictionary *_fullSyncIDSOptions;
     CDUnknownBlockType _nextBatchStep;
 }
 
 + (id)fullSyncActivityDictionary;
 @property(copy, nonatomic) CDUnknownBlockType nextBatchStep; // @synthesize nextBatchStep=_nextBatchStep;
-@property(copy, nonatomic) NSDictionary *fullSyncIDSOptions; // @synthesize fullSyncIDSOptions=_fullSyncIDSOptions;
-@property(copy, nonatomic) NSDictionary *fullSyncUserInfo; // @synthesize fullSyncUserInfo=_fullSyncUserInfo;
-@property(copy, nonatomic) NSString *waitingForSyncEndID; // @synthesize waitingForSyncEndID=_waitingForSyncEndID;
-@property(copy, nonatomic) NSString *lastSyncEndID; // @synthesize lastSyncEndID=_lastSyncEndID;
-@property(copy, nonatomic) NSString *fullSyncIdentifier; // @synthesize fullSyncIdentifier=_fullSyncIdentifier;
 @property(nonatomic) _Bool fullSyncWasRequestedBySlave; // @synthesize fullSyncWasRequestedBySlave=_fullSyncWasRequestedBySlave;
 @property(retain, nonatomic) SYVectorClock *vectorClock; // @synthesize vectorClock=_vectorClock;
 @property(retain, nonatomic) NMSMessageCenter *messageCenter; // @synthesize messageCenter=_messageCenter;
@@ -144,7 +127,7 @@
 - (_Bool)peerState:(id)arg1 fromPeer:(id)arg2 matchesExpectationForChangeCount:(unsigned long long)arg3 offsetAmount:(unsigned long long *)arg4;
 - (void)_copyPeerClockFromMessageHeaderIfNecessary:(id)arg1;
 - (void)postUserNotification:(id)arg1 message:(id)arg2;
-@property(nonatomic) _Bool inFullSync;
+- (_Bool)inFullSync;
 @property(nonatomic) double timeToLive;
 - (void)setupDatabase;
 - (void)_setupMessageCenter_LOCKED;
@@ -161,9 +144,8 @@
 @property(readonly, nonatomic, getter=isPaired) _Bool paired;
 - (void)setupPairingNotifications;
 - (void)_listenForPrefsChangeNotifications;
+- (void)_updateMessageCenterPrefs:(id)arg1;
 - (void)_prefsChanged;
-- (void)_recordDataInfo:(id)arg1 atURL:(id)arg2;
-- (void)_setRecordingTransmissions:(_Bool)arg1;
 - (id)_batchChunkUnackedIndices;
 - (void)dealloc;
 - (id)initWithService:(id)arg1 isGStore:(_Bool)arg2 highPriority:(_Bool)arg3 isMasterStore:(_Bool)arg4 tracksChanges:(_Bool)arg5;

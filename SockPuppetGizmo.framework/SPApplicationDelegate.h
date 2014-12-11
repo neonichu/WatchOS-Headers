@@ -6,24 +6,28 @@
 
 #import "NSObject.h"
 
+#import "PUICQuickboardViewControllerDelegate.h"
 #import "SPCompanionConnectionDelegate.h"
 #import "SPInterfaceViewControllerDelegate.h"
 #import "UIApplicationDelegate.h"
 #import "UIGestureRecognizerDelegate.h"
 
-@class NSDictionary, NSString, SPCompanionConnection, SPInterfaceViewController, SPPageViewController, UIColor, UIImage, UIView, UIWindow;
+@class NSDictionary, NSString, PUICQuickboardMessageViewController, SPCompanionConnection, SPInterfaceViewController, SPPageViewController, UIColor, UIImage, UIView, UIWindow;
 
-@interface SPApplicationDelegate : NSObject <SPInterfaceViewControllerDelegate, SPCompanionConnectionDelegate, UIGestureRecognizerDelegate, UIApplicationDelegate>
+@interface SPApplicationDelegate : NSObject <SPInterfaceViewControllerDelegate, SPCompanionConnectionDelegate, UIGestureRecognizerDelegate, PUICQuickboardViewControllerDelegate, UIApplicationDelegate>
 {
     _Bool _launchedWithOptions;
     _Bool _launchedFromNotification;
     _Bool _presentedNotification;
+    _Bool _simulatorNotificationForceStaticPresentation;
     UIWindow *_window;
     NSString *_launchMode;
     SPCompanionConnection *_companionConnection;
     NSDictionary *_interfaceDescription;
+    NSString *_stringsFileName;
     UIColor *_applicationColor;
     SPPageViewController *_pageViewController;
+    PUICQuickboardMessageViewController *_textInputViewController;
     double _busyDisplayTime;
     UIView *_busyView;
     NSDictionary *_dynamicNotificationInterface;
@@ -33,12 +37,15 @@
     NSString *_notificationTitle;
     NSDictionary *_remoteNotificationContext;
     UIColor *_customNotificationSashColor;
+    UIColor *_customNotificationTitleColor;
     UIImage *_simulatorNotificationIcon;
     NSString *_simulatorNotificationAppName;
 }
 
+@property(nonatomic) _Bool simulatorNotificationForceStaticPresentation; // @synthesize simulatorNotificationForceStaticPresentation=_simulatorNotificationForceStaticPresentation;
 @property(retain, nonatomic) NSString *simulatorNotificationAppName; // @synthesize simulatorNotificationAppName=_simulatorNotificationAppName;
 @property(retain, nonatomic) UIImage *simulatorNotificationIcon; // @synthesize simulatorNotificationIcon=_simulatorNotificationIcon;
+@property(retain, nonatomic) UIColor *customNotificationTitleColor; // @synthesize customNotificationTitleColor=_customNotificationTitleColor;
 @property(retain, nonatomic) UIColor *customNotificationSashColor; // @synthesize customNotificationSashColor=_customNotificationSashColor;
 @property(copy, nonatomic) NSDictionary *remoteNotificationContext; // @synthesize remoteNotificationContext=_remoteNotificationContext;
 @property(copy, nonatomic) NSString *notificationTitle; // @synthesize notificationTitle=_notificationTitle;
@@ -51,8 +58,10 @@
 @property(nonatomic) double busyDisplayTime; // @synthesize busyDisplayTime=_busyDisplayTime;
 @property(nonatomic) _Bool launchedFromNotification; // @synthesize launchedFromNotification=_launchedFromNotification;
 @property(nonatomic) _Bool launchedWithOptions; // @synthesize launchedWithOptions=_launchedWithOptions;
+@property(retain, nonatomic) PUICQuickboardMessageViewController *textInputViewController; // @synthesize textInputViewController=_textInputViewController;
 @property(retain, nonatomic) SPPageViewController *pageViewController; // @synthesize pageViewController=_pageViewController;
 @property(retain, nonatomic) UIColor *applicationColor; // @synthesize applicationColor=_applicationColor;
+@property(copy, nonatomic) NSString *stringsFileName; // @synthesize stringsFileName=_stringsFileName;
 @property(retain, nonatomic) NSDictionary *interfaceDescription; // @synthesize interfaceDescription=_interfaceDescription;
 @property(retain) SPCompanionConnection *companionConnection; // @synthesize companionConnection=_companionConnection;
 @property(readonly, copy, nonatomic) NSString *launchMode; // @synthesize launchMode=_launchMode;
@@ -67,6 +76,10 @@
 - (void)_clearBusy;
 - (void)_showBusyScreen;
 - (void)_showBusyIndicator;
+- (void)quickboardDictationButtonTappedInCompanionSimulator:(id)arg1;
+- (void)quickboardEmojiButtonTappedInCompanionSimulator:(id)arg1;
+- (void)quickboardInputCancelled:(id)arg1;
+- (void)quickboard:(id)arg1 textEntered:(id)arg2;
 - (void)launchGizmoAppForCompanionAppWithIdentifier:(id)arg1 withURLString:(id)arg2;
 - (void)interfaceViewController:(id)arg1 setValue:(id)arg2 forKey:(id)arg3;
 - (void)interfaceViewController:(id)arg1 sendAction:(id)arg2 withValue:(id)arg3;
@@ -82,6 +95,7 @@
 - (void)companionConnection:(id)arg1 interfaceViewControllerDismissViewController:(id)arg2;
 - (void)companionConnection:(id)arg1 interfaceViewController:(id)arg2 presentViewControllers:(id)arg3;
 - (void)companionConnection:(id)arg1 interfaceViewController:(id)arg2 presentViewController:(id)arg3 info:(id)arg4;
+- (void)companionConnection:(id)arg1 resequenceRootInterfaceViewControllers:(id)arg2;
 - (void)companionConnection:(id)arg1 interfaceViewControllerBecomeCurrentPageViewController:(id)arg2;
 - (void)companionConnection:(id)arg1 interfaceViewControllerPopToRootViewController:(id)arg2;
 - (void)companionConnection:(id)arg1 interfaceViewControllerPopViewController:(id)arg2;

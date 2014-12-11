@@ -6,16 +6,19 @@
 
 #import "UIView.h"
 
+#import "PUICStatusViewDataSource.h"
 #import "UIStatusBarServerClient.h"
 
-@class PUICStatusView, UILabel, UIStatusBarServer;
+@class NSArray, NSDictionary, NSString, PUICStatusView, UILabel, UIStatusBarServer;
 
-@interface PUICStatusBarGlobalContextView : UIView <UIStatusBarServerClient>
+@interface PUICStatusBarGlobalContextView : UIView <UIStatusBarServerClient, PUICStatusViewDataSource>
 {
     UILabel *_time;
     PUICStatusView *_statusView;
     _Bool _animatingTime;
     _Bool _tookAssertion;
+    NSArray *_statusViewStates;
+    NSDictionary *_statusViewStatesMap;
     _Bool _inForeground;
     _Bool _currentDataIsStale;
     UIStatusBarServer *_statusBarServer;
@@ -25,16 +28,20 @@
 @property(nonatomic) _Bool inForeground; // @synthesize inForeground=_inForeground;
 @property(retain, nonatomic) UIStatusBarServer *statusBarServer; // @synthesize statusBarServer=_statusBarServer;
 - (void).cxx_destruct;
+- (id)stateByIndex:(unsigned long long)arg1 forStatusView:(id)arg2;
+- (unsigned long long)numberOfStatesForStatusView:(id)arg1;
+- (void)_initializeStatusObjectsIfNecessary;
+- (_Bool)automaticCyclingForStatusView:(id)arg1;
 - (void)setTimeHidden:(_Bool)arg1 duration:(double)arg2 animation:(unsigned long long)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)setTimeHidden:(_Bool)arg1 animation:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)setTimeHidden:(_Bool)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)_adjustActiveIconIfNeededForData:(const CDStruct_1f4d094c *)arg1 animated:(_Bool)arg2;
+- (void)_adjustStatesForData:(const CDStruct_1f4d094c *)arg1 animated:(_Bool)arg2 forceCycle:(_Bool)arg3;
 - (void)_updateTime:(id)arg1;
 - (void)statusBarServer:(id)arg1 didReceiveDoubleHeightStatusString:(id)arg2 forStyle:(long long)arg3;
 - (void)statusBarServer:(id)arg1 didReceiveGlowAnimationState:(_Bool)arg2 forStyle:(long long)arg3;
 - (void)statusBarServer:(id)arg1 didReceiveStyleOverrides:(int)arg2;
 - (void)statusBarServer:(id)arg1 didReceiveStatusBarData:(const CDStruct_1f4d094c *)arg2 withActions:(int)arg3;
-- (void)_updateWithStatusBarData:(const CDStruct_1f4d094c *)arg1;
+- (void)_updateWithStatusBarData:(const CDStruct_1f4d094c *)arg1 withActions:(int)arg2;
 - (void)_updateStatusBarServerRegistration;
 - (void)_didEnterBackground:(id)arg1;
 - (void)_willEnterForeground:(id)arg1;
@@ -47,6 +54,12 @@
 - (void)setNeedsLayout;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

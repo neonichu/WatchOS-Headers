@@ -12,12 +12,12 @@
 
 @interface NBBackup : NSObject <NSSecureCoding>
 {
-    _Bool _siriOptInEnabled;
     _Bool _locationOptInEnabled;
     _Bool _diagnosticsOptInEnabled;
+    _Bool _siriOptInEnabled;
     NSUUID *_uuid;
     NSString *_name;
-    NSString *_model;
+    NSString *_productType;
     NSString *_systemVersion;
     NSString *_systemBuildVersion;
     NSString *_deviceColor;
@@ -30,16 +30,18 @@
     NSString *_watchFaceColor;
     NSDate *_lastModificationDate;
     NSNumber *_sizeInBytes;
+    NSString *_model;
     NSString *_material;
 }
 
 + (_Bool)supportsSecureCoding;
+@property(nonatomic, getter=isSiriOptInEnabled) _Bool siriOptInEnabled; // @synthesize siriOptInEnabled=_siriOptInEnabled;
 @property(retain, nonatomic) NSString *material; // @synthesize material=_material;
+@property(retain, nonatomic) NSString *model; // @synthesize model=_model;
 @property(retain, nonatomic) NSNumber *sizeInBytes; // @synthesize sizeInBytes=_sizeInBytes;
 @property(retain, nonatomic) NSDate *lastModificationDate; // @synthesize lastModificationDate=_lastModificationDate;
 @property(nonatomic, getter=isDiagnosticsOptInEnabled) _Bool diagnosticsOptInEnabled; // @synthesize diagnosticsOptInEnabled=_diagnosticsOptInEnabled;
 @property(nonatomic, getter=isLocationOptInEnabled) _Bool locationOptInEnabled; // @synthesize locationOptInEnabled=_locationOptInEnabled;
-@property(nonatomic, getter=isSiriOptInEnabled) _Bool siriOptInEnabled; // @synthesize siriOptInEnabled=_siriOptInEnabled;
 @property(retain, nonatomic) NSString *watchFaceColor; // @synthesize watchFaceColor=_watchFaceColor;
 @property(retain, nonatomic) NSString *watchFace; // @synthesize watchFace=_watchFace;
 @property(retain, nonatomic) NSNumber *bcmWindowMaterial; // @synthesize bcmWindowMaterial=_bcmWindowMaterial;
@@ -50,7 +52,7 @@
 @property(retain, nonatomic) NSString *deviceColor; // @synthesize deviceColor=_deviceColor;
 @property(retain, nonatomic) NSString *systemBuildVersion; // @synthesize systemBuildVersion=_systemBuildVersion;
 @property(retain, nonatomic) NSString *systemVersion; // @synthesize systemVersion=_systemVersion;
-@property(retain, nonatomic) NSString *model; // @synthesize model=_model;
+@property(retain, nonatomic) NSString *productType; // @synthesize productType=_productType;
 @property(retain, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 - (void).cxx_destruct;

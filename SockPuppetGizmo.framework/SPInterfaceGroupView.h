@@ -6,12 +6,11 @@
 
 #import "UIImageView.h"
 
-#import "PUICCrownInputSequencerDataSource.h"
 #import "SPInterfaceItem.h"
 
-@class NSArray, NSBundle, NSDictionary, NSString, PUICCrownInputSequencerDetent;
+@class NSArray, NSBundle, NSDictionary, NSString;
 
-@interface SPInterfaceGroupView : UIImageView <SPInterfaceItem, PUICCrownInputSequencerDataSource>
+@interface SPInterfaceGroupView : UIImageView <SPInterfaceItem>
 {
     _Bool _clipsContentsVertically;
     _Bool _isNotification;
@@ -19,7 +18,10 @@
     _Bool _isSection;
     _Bool _isSectionDefault;
     _Bool _isRoot;
+    _Bool _isTableRowRoot;
     _Bool _marginsSet;
+    _Bool _radiusSet;
+    _Bool _backgroundSet;
     _Bool _defaultAnimate;
     id <SPInterfaceDelegate> _delegate;
     long long _groupViewLayout;
@@ -33,7 +35,7 @@
     double _heightAdjustment;
     double _spacing;
     NSBundle *_bundle;
-    PUICCrownInputSequencerDetent *_detent;
+    NSString *_stringsFileName;
     NSArray *_allAnimationImages;
     double _defaultDuration;
     struct CGSize _fixedSize;
@@ -43,11 +45,14 @@
 @property(nonatomic) _Bool defaultAnimate; // @synthesize defaultAnimate=_defaultAnimate;
 @property(nonatomic) double defaultDuration; // @synthesize defaultDuration=_defaultDuration;
 @property(copy, nonatomic) NSArray *allAnimationImages; // @synthesize allAnimationImages=_allAnimationImages;
-@property(retain, nonatomic) PUICCrownInputSequencerDetent *detent; // @synthesize detent=_detent;
+@property(nonatomic) _Bool backgroundSet; // @synthesize backgroundSet=_backgroundSet;
+@property(nonatomic) _Bool radiusSet; // @synthesize radiusSet=_radiusSet;
 @property(nonatomic) _Bool marginsSet; // @synthesize marginsSet=_marginsSet;
+@property(nonatomic) _Bool isTableRowRoot; // @synthesize isTableRowRoot=_isTableRowRoot;
 @property(nonatomic) _Bool isRoot; // @synthesize isRoot=_isRoot;
 @property(nonatomic) _Bool isSectionDefault; // @synthesize isSectionDefault=_isSectionDefault;
 @property(nonatomic) _Bool isSection; // @synthesize isSection=_isSection;
+@property(copy, nonatomic) NSString *stringsFileName; // @synthesize stringsFileName=_stringsFileName;
 @property(retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
 @property(nonatomic) double spacing; // @synthesize spacing=_spacing;
 @property(nonatomic) struct UIEdgeInsets margins; // @synthesize margins=_margins;
@@ -66,17 +71,13 @@
 @property(nonatomic) long long groupViewLayout; // @synthesize groupViewLayout=_groupViewLayout;
 @property(nonatomic) __weak id <SPInterfaceDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (id)_snappingDeadbandDetentWithOffset:(double)arg1 width:(double)arg2 anchor:(double)arg3;
-- (void)crownInputSequencer:(id)arg1 previousDetent:(id *)arg2 nextDetent:(id *)arg3 forOffset:(double)arg4;
-- (id)collectDetents:(float)arg1;
-- (void)_adjustWidthsInDetents:(id)arg1;
-- (void)_RemoveDuplicateDetents:(id)arg1;
-- (void)buildDetentList;
 - (void)setStaticNotificationAlertLabelText:(id)arg1;
-- (void)notifyDetentsChanged;
+- (void)applyTableCellDefaultAppearance;
+- (void)removePropertiesForGlanceContentView;
 - (void)action:(id)arg1 value:(id)arg2;
 - (void)layoutSubviews;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
+- (_Bool)hasIntrinsicHeight;
 - (struct UIEdgeInsets)alignmentRectInsets;
 - (_Bool)hasDefinedHeight;
 - (_Bool)hasDefinedWidth;
@@ -85,7 +86,7 @@
 - (void)setInterfaceItemValue:(id)arg1 forKey:(id)arg2 property:(id)arg3;
 - (_Bool)_setInterfaceItemValue:(id)arg1 forKey:(id)arg2 property:(id)arg3;
 - (id)allProperties;
-- (id)initWithItemDescription:(id)arg1 bundle:(id)arg2;
+- (id)initWithItemDescription:(id)arg1 bundle:(id)arg2 stringsFileName:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

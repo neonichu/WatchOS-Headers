@@ -20,6 +20,7 @@
     NSMutableDictionary *_interfaceControllers;
     NSMutableDictionary *_interfaceControllersOwners;
     NSObject<OS_dispatch_queue> *_interfaceControllersAccessQueue;
+    NSString *_rootViewControllerID;
     NSString *_navigatingViewControllerID;
     CDUnknownBlockType _textInputCompletion;
 }
@@ -29,13 +30,15 @@
 + (void)sendCacheRequest:(id)arg1 clientIdentifier:(id)arg2;
 + (void)sendCacheRequestMessage:(id)arg1;
 + (void)sendCacheRequest:(id)arg1;
++ (_Bool)openParentApplication:(id)arg1 reply:(CDUnknownBlockType)arg2;
 + (void)updateUserActivity:(id)arg1 userInfo:(id)arg2 interfaceController:(id)arg3;
 + (void)controllerDismissTextInputController:(id)arg1;
-+ (void)controller:(id)arg1 presentTextInputControllerWithSuggestions:(id)arg2 completion:(CDUnknownBlockType)arg3;
++ (void)controller:(id)arg1 presentTextInputControllerWithSuggestions:(id)arg2 allowedInputMode:(id)arg3 completion:(CDUnknownBlockType)arg4;
 + (void)controllerDismiss:(id)arg1;
 + (void)controller:(id)arg1 presentInterfaceControllers:(id)arg2 contexts:(id)arg3;
 + (void)controller:(id)arg1 presentInterfaceController:(id)arg2 context:(id)arg3;
 + (void)controllerBecomeCurrentPage:(id)arg1;
++ (void)reloadRootControllersWithNames:(id)arg1 contexts:(id)arg2;
 + (void)controllerPopToRoot:(id)arg1;
 + (void)controllerPop:(id)arg1;
 + (void)controller:(id)arg1 pushInterfaceController:(id)arg2 context:(id)arg3;
@@ -47,11 +50,11 @@
 + (void)clearStorageForController:(id)arg1;
 + (void)_setupStorageForController:(id)arg1;
 + (id)SerializablePropertyValue:(id)arg1;
-+ (void)_updateAccessibility;
 + (id)_remoteIdentifier;
 + (id)startRemoteInterface;
 @property(copy, nonatomic) CDUnknownBlockType textInputCompletion; // @synthesize textInputCompletion=_textInputCompletion;
 @property(retain, nonatomic) NSString *navigatingViewControllerID; // @synthesize navigatingViewControllerID=_navigatingViewControllerID;
+@property(retain, nonatomic) NSString *rootViewControllerID; // @synthesize rootViewControllerID=_rootViewControllerID;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *interfaceControllersAccessQueue; // @synthesize interfaceControllersAccessQueue=_interfaceControllersAccessQueue;
 @property(retain, nonatomic) NSMutableDictionary *interfaceControllersOwners; // @synthesize interfaceControllersOwners=_interfaceControllersOwners;
 @property(retain, nonatomic) NSMutableDictionary *interfaceControllers; // @synthesize interfaceControllers=_interfaceControllers;
@@ -62,6 +65,7 @@
 @property(retain, nonatomic) id <SPRemoteInterfaceDataDelegateProtocol> dataDelegate; // @synthesize dataDelegate=_dataDelegate;
 - (void).cxx_destruct;
 - (void)_fillDataWithRandom:(id)arg1 length:(long long)arg2;
+- (void)getComplicationData:(id)arg1;
 - (void)dataInterfaceWillResignActive:(id)arg1;
 - (void)dataInterfaceDidBecomeActive:(id)arg1;
 - (void)applicationWillResignActive:(id)arg1;
@@ -73,7 +77,7 @@
 - (void)removeInterfaceControllersForClient:(id)arg1;
 - (void)_dumpInterfaceDictionary;
 - (void)_deregisterInterfaceControllerID:(id)arg1;
-- (void)_registerInterfaceController:(id)arg1 interfaceControllerID:(id)arg2 interfaceControllerClientID:(id)arg3;
+- (void)_registerInterfaceController:(id)arg1 interfaceControllerID:(id)arg2 interfaceControllerClientID:(id)arg3 applicationRootController:(_Bool)arg4;
 - (id)_interfaceControllerIDsForClientID:(id)arg1;
 - (id)_interfaceControllerClientIDForControllerID:(id)arg1;
 - (id)_interfaceControllerID:(id)arg1;
@@ -81,11 +85,12 @@
 - (void)sendWillActivateReplyForController:(id)arg1;
 - (void)notificationController:(id)arg1 showNotificationInterfaceType:(long long)arg2;
 - (void)controllerDismissTextInputController:(id)arg1;
-- (void)controllerPresentTextInputController:(id)arg1 suggestions:(id)arg2;
+- (void)controllerPresentTextInputController:(id)arg1 allowedInputMode:(id)arg2 suggestions:(id)arg3;
 - (void)controllerDismiss:(id)arg1;
 - (void)controller:(id)arg1 presentInterfaceControllers:(id)arg2;
 - (void)controller:(id)arg1 presentInterfaceController:(id)arg2;
 - (void)controllerBecomeCurrentPage:(id)arg1;
+- (void)reloadRootControllersWithNames:(id)arg1;
 - (void)controllerPopToRoot:(id)arg1;
 - (void)controllerPop:(id)arg1;
 - (void)controller:(id)arg1 pushInterfaceController:(id)arg2;
@@ -93,6 +98,7 @@
 - (void)sendCacheRequestMessage:(id)arg1;
 - (void)sendCacheRequest:(id)arg1;
 - (void)launchGizmoAppForCompanionAppWithIdentifier:(id)arg1 withURLString:(id)arg2;
+- (_Bool)openParentApplication:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)updateUserActivity:(id)arg1 userInfo:(id)arg2 controller:(id)arg3;
 - (void)fetchNotificationForNotificationID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)sendComplicationObject:(id)arg1;

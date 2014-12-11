@@ -25,12 +25,14 @@
 @property(nonatomic) _Bool timerEnabled; // @synthesize timerEnabled=_timerEnabled;
 @property(retain, nonatomic) NSDateComponentsFormatter *formatter; // @synthesize formatter=_formatter;
 - (void).cxx_destruct;
+- (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)setInterfaceItemValue:(id)arg1 property:(id)arg2;
+- (void)applyMonospaceNumbers;
 - (void)didMoveToWindow;
 - (void)updateTimer;
 - (void)updateText;
 - (void)dealloc;
-- (id)initWithItemDescription:(id)arg1 bundle:(id)arg2;
+- (id)initWithItemDescription:(id)arg1 bundle:(id)arg2 stringsFileName:(id)arg3;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "PUICWheelHandlerDelegate.h"
 #import "PUICZoomModelDelegate.h"
 
-@class NSString, PUICWheelHandler, PUICZoomModel, UIColor, UIViewController, UIWindow;
+@class NSString, PUICActionWindowListener, PUICWheelHandler, PUICZoomModel, UIColor, UIViewController, UIWindow;
 
 @interface PUICApplication : UIApplication <PUICWheelHandlerDelegate, PUICZoomModelDelegate>
 {
@@ -20,6 +20,7 @@
     long long _orientation;
     PUICWheelHandler *_wheelHandler;
     PUICZoomModel *_zoomModel;
+    PUICActionWindowListener *_windowListener;
 }
 
 + (_Bool)supportsOrb;
@@ -27,6 +28,7 @@
 + (Class)_statusBarClass;
 + (id)sharedPUICApplication;
 + (id)_puicUserDefaults;
+@property(retain, nonatomic) PUICActionWindowListener *windowListener; // @synthesize windowListener=_windowListener;
 @property(retain, nonatomic) PUICZoomModel *zoomModel; // @synthesize zoomModel=_zoomModel;
 @property(retain, nonatomic) PUICWheelHandler *wheelHandler; // @synthesize wheelHandler=_wheelHandler;
 @property(nonatomic) long long orientation; // @synthesize orientation=_orientation;
@@ -60,7 +62,6 @@
 - (void)_updateCurrentStatusBarViewControllerAppearance;
 - (struct CGAffineTransform)_rotationTransformForOrientation:(long long)arg1;
 - (void)_orientationChanged:(id)arg1;
-- (void)_keyWindowChange:(id)arg1;
 - (void)_overrideMainScreenDefaultTraitCollection;
 - (void)_applicationDidBecomeActiveNotification:(id)arg1;
 - (id)init;

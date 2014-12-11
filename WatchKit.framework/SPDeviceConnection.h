@@ -23,7 +23,6 @@
 @property(nonatomic) __weak id <SPDeviceConnectionDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)receiveData:(id)arg1;
-- (void)applicationIdentifierWithReply:(CDUnknownBlockType)arg1;
 - (void)fetchApplicationWithContainingApplicationBundleID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)removeApplication:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)installApplication:(id)arg1 completion:(CDUnknownBlockType)arg2;

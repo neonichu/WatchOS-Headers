@@ -22,10 +22,11 @@
 @property(nonatomic) double screenScale; // @synthesize screenScale=_screenScale;
 @property(nonatomic) struct CGRect screenBounds; // @synthesize screenBounds=_screenBounds;
 - (void).cxx_destruct;
+- (void)imageInCacheWithName:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)removeAllCachedImages;
 - (void)removeCachedImageWithName:(id)arg1;
-- (void)addCachedImageWithData:(id)arg1 name:(id)arg2;
-- (void)addCachedImage:(id)arg1 name:(id)arg2;
+- (_Bool)addCachedImageWithData:(id)arg1 name:(id)arg2;
+- (_Bool)addCachedImage:(id)arg1 name:(id)arg2;
 
 @end
 

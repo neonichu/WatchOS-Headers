@@ -10,6 +10,8 @@
 {
 }
 
++ (id)deserializeDictionary:(id)arg1;
++ (id)serializeDictionary:(id)arg1;
 + (id)uniqueNumber;
 
 @end

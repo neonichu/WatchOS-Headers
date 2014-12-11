@@ -12,6 +12,7 @@
 
 + (id)_defaultTextColorForTableViewStyle:(long long)arg1 isSectionHeader:(_Bool)arg2;
 + (id)_defaultFontForTableViewStyle:(long long)arg1 isSectionHeader:(_Bool)arg2;
+- (void)layoutSubviews;
 - (void)prepareForReuse;
 - (id)initWithReuseIdentifier:(id)arg1;
 

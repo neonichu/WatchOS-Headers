@@ -6,18 +6,18 @@
 
 #import "UIView.h"
 
-#import "PUICCrownInputSequencerDataSource.h"
 #import "PUICTableViewDataSource.h"
 #import "PUICTableViewDelegate.h"
 #import "SPInterfaceActionItem.h"
 
 @class NSBundle, NSDictionary, NSMutableArray, NSString, PUICTableView;
 
-@interface SPInterfaceListView : UIView <PUICTableViewDataSource, PUICTableViewDelegate, SPInterfaceActionItem, PUICCrownInputSequencerDataSource>
+@interface SPInterfaceListView : UIView <PUICTableViewDataSource, PUICTableViewDelegate, SPInterfaceActionItem>
 {
     _Bool _enabled;
     NSDictionary *_itemDescriptionForIB;
     NSBundle *_bundle;
+    NSString *_stringsFileName;
     long long _interfaceAlignment;
     long long _verticalInterfaceAlignment;
     NSDictionary *_listProperty;
@@ -30,14 +30,14 @@
     PUICTableView *_tableView;
     id _target;
     SEL _action;
-    NSMutableArray *_detents;
     NSDictionary *_selectionSegue;
+    NSMutableArray *_dirtyIndexPaths;
     struct CGSize _fixedSize;
 }
 
 @property(nonatomic) _Bool enabled; // @synthesize enabled=_enabled;
+@property(retain, nonatomic) NSMutableArray *dirtyIndexPaths; // @synthesize dirtyIndexPaths=_dirtyIndexPaths;
 @property(copy, nonatomic) NSDictionary *selectionSegue; // @synthesize selectionSegue=_selectionSegue;
-@property(retain, nonatomic) NSMutableArray *detents; // @synthesize detents=_detents;
 @property(nonatomic) SEL action; // @synthesize action=_action;
 @property(nonatomic) id target; // @synthesize target=_target;
 @property(retain, nonatomic) PUICTableView *tableView; // @synthesize tableView=_tableView;
@@ -51,34 +51,36 @@
 @property(copy, nonatomic) NSDictionary *listProperty; // @synthesize listProperty=_listProperty;
 @property(nonatomic) long long verticalInterfaceAlignment; // @synthesize verticalInterfaceAlignment=_verticalInterfaceAlignment;
 @property(nonatomic) long long interfaceAlignment; // @synthesize interfaceAlignment=_interfaceAlignment;
+@property(copy, nonatomic) NSString *stringsFileName; // @synthesize stringsFileName=_stringsFileName;
 @property(retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
 @property(retain, nonatomic) NSDictionary *itemDescriptionForIB; // @synthesize itemDescriptionForIB=_itemDescriptionForIB;
 - (void).cxx_destruct;
 - (void)crownInputSequencer:(id)arg1 previousDetent:(id *)arg2 nextDetent:(id *)arg3 forOffset:(double)arg4;
+- (void)prepareInterfaceItemForIB;
 - (void)action:(id)arg1 value:(id)arg2;
 - (void)setInterfaceItemValue:(id)arg1 property:(id)arg2;
+- (void)reloadDirtyIndexPaths;
 - (_Bool)_setInterfaceItemValue:(id)arg1 forKey:(id)arg2 property:(id)arg3;
 - (void)_createInterfaceItems:(id)arg1 property:(id)arg2;
 - (void)layoutSubviews;
+- (_Bool)hasIntrinsicHeight;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
-- (id)createDetents:(float)arg1;
-- (id)collectDetents:(float)arg1;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (_Bool)tableView:(id)arg1 shouldHighlightRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
-- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (_Bool)tableView:(id)arg1 canEditRowAtIndexPath:(id)arg2;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
-- (void)layoutCell:(id)arg1 withItem:(id)arg2;
+- (void)layoutItem:(id)arg1;
 - (id)itemAtIndex:(long long)arg1;
-- (void)notifyDetentsChanged;
 - (void)contentSizeCategoryDidChange;
 - (id)companionProperty;
 - (void)setTarget:(id)arg1 forInterfaceItemAction:(SEL)arg2;
 - (id)interfaceAction;
-- (id)initWithItemDescription:(id)arg1 bundle:(id)arg2;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)dealloc;
+- (id)initWithItemDescription:(id)arg1 bundle:(id)arg2 stringsFileName:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

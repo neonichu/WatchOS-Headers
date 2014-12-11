@@ -8,7 +8,7 @@
 
 #import "IDSServiceDelegate.h"
 
-@class IDSService, NMSPersistentDictionary, NSDate, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
+@class IDSService, NMSPersistentDictionary, NMSWindowData, NSDate, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
 @interface NMSMessageCenter : NSObject <IDSServiceDelegate>
 {
@@ -23,14 +23,30 @@
     NMSPersistentDictionary *_persistentContextStore;
     NSDate *_nextExpireTimerFireDate;
     NSObject<OS_dispatch_source> *_expireTimer;
+    unsigned long long _currentBytesInFlight;
+    NMSWindowData *_windowData;
+    NSObject<OS_dispatch_source> *_windowTimeout;
+    NSObject<OS_dispatch_queue> *_windowQueue;
+    _Bool _enableTransmissionWindow;
     _Bool _delegateRequiresACKs;
     id <NMSMessageCenterDelegate> _delegate;
+    unsigned long long _maxMessagesInFlight;
+    unsigned long long _minMessagesInFlight;
+    unsigned long long _maxBytesInFlight;
+    double _windowResponseTimeout;
     NSObject<OS_dispatch_queue> *_queue;
 }
 
++ (void)setMessageWindowCountEnabled:(_Bool)arg1;
++ (_Bool)messageWindowCountEnabled;
 @property(nonatomic) _Bool delegateRequiresACKs; // @synthesize delegateRequiresACKs=_delegateRequiresACKs;
 @property(retain, nonatomic) IDSService *service; // @synthesize service=_service;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+@property(nonatomic) double windowResponseTimeout; // @synthesize windowResponseTimeout=_windowResponseTimeout;
+@property(nonatomic) unsigned long long maxBytesInFlight; // @synthesize maxBytesInFlight=_maxBytesInFlight;
+@property(nonatomic) unsigned long long minMessagesInFlight; // @synthesize minMessagesInFlight=_minMessagesInFlight;
+@property(nonatomic) unsigned long long maxMessagesInFlight; // @synthesize maxMessagesInFlight=_maxMessagesInFlight;
+@property(nonatomic) _Bool enableTransmissionWindow; // @synthesize enableTransmissionWindow=_enableTransmissionWindow;
 @property(nonatomic) __weak id <NMSMessageCenterDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)service:(id)arg1 account:(id)arg2 incomingData:(id)arg3 fromID:(id)arg4 context:(id)arg5;
@@ -48,6 +64,7 @@
 - (void)resume;
 - (void)_updateExpireTimerWithDate:(id)arg1;
 - (void)_expireMessages;
+@property(readonly, nonatomic, getter=_currentBytesInFlight) unsigned long long currentBytesInFlight;
 - (id)_pbMappingForMessageID:(unsigned short)arg1;
 - (void)mapPBRequest:(Class)arg1 toResponse:(Class)arg2 messageID:(unsigned short)arg3;
 - (void)addResponseHandler:(unsigned short)arg1 usingBlock:(CDUnknownBlockType)arg2;
@@ -57,6 +74,8 @@
 - (id)responseHandlers;
 - (id)errorHandlers;
 - (id)requestHandlers;
+- (void)_timeoutWindowedMessages;
+- (void)_setNextWindowTimeoutFireDate;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;
 - (id)initWithIDSServiceIdentifier:(id)arg1 launchOnDemandNotification:(id)arg2 cacheFolderPath:(id)arg3 loggingFacility:(struct __CFString *)arg4;

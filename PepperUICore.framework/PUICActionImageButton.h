@@ -14,6 +14,9 @@
 - (struct CGRect)imageRectForContentRect:(struct CGRect)arg1;
 - (struct CGRect)titleRectForContentRect:(struct CGRect)arg1;
 - (struct CGRect)backgroundRectForBounds:(struct CGRect)arg1;
+- (id)_createBackgroundImageWithColor:(id)arg1;
+- (id)_destructiveBackgroundImage;
+- (id)_backgroundImage;
 - (void)_updateBackgroundImage;
 - (_Bool)isImageButton;
 - (void)tintColorDidChange;

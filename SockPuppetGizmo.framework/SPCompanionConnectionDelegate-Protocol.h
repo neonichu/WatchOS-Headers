@@ -17,6 +17,7 @@
 - (void)companionConnection:(SPCompanionConnection *)arg1 interfaceViewControllerDismissViewController:(NSString *)arg2;
 - (void)companionConnection:(SPCompanionConnection *)arg1 interfaceViewController:(NSString *)arg2 presentViewControllers:(NSArray *)arg3;
 - (void)companionConnection:(SPCompanionConnection *)arg1 interfaceViewController:(NSString *)arg2 presentViewController:(NSString *)arg3 info:(NSDictionary *)arg4;
+- (void)companionConnection:(SPCompanionConnection *)arg1 resequenceRootInterfaceViewControllers:(NSArray *)arg2;
 - (void)companionConnection:(SPCompanionConnection *)arg1 interfaceViewControllerBecomeCurrentPageViewController:(NSString *)arg2;
 - (void)companionConnection:(SPCompanionConnection *)arg1 interfaceViewControllerPopToRootViewController:(NSString *)arg2;
 - (void)companionConnection:(SPCompanionConnection *)arg1 interfaceViewControllerPopViewController:(NSString *)arg2;
