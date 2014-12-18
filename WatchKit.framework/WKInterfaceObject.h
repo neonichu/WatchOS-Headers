@@ -31,6 +31,9 @@
 - (void)_setupWithDescription:(id)arg1 forController:(id)arg2;
 - (id)_initWithInterfaceProperty:(id)arg1 viewControllerID:(id)arg2 index:(long long)arg3;
 - (id)init;
+- (void)setAccessibilityImageRegions:(id)arg1;
+- (void)setAccessibilityTraits:(unsigned long long)arg1;
+- (void)setIsAccessibilityElement:(_Bool)arg1;
 - (void)setAccessibilityValue:(id)arg1;
 - (void)setAccessibilityHint:(id)arg1;
 - (void)setAccessibilityLabel:(id)arg1;

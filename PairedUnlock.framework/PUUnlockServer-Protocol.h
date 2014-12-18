@@ -13,7 +13,7 @@
 - (void)setUnlockEnabled:(_Bool)arg1;
 - (void)didCompletePasscodeAction:(_Bool)arg1 error:(NSError *)arg2;
 - (void)requestRemoteDeviceUnlockNotification;
-- (void)requestRemoteDevicePasscodeAction:(long long)arg1;
+- (void)requestRemoteDevicePasscodeAction:(long long)arg1 type:(long long)arg2;
 - (void)disableOnlyRemoteUnlock;
 - (void)enableOnlyRemoteUnlockWithPasscode:(NSString *)arg1;
 - (void)unpairForUnlock;

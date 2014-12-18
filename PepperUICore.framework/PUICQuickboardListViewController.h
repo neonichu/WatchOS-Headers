@@ -17,18 +17,15 @@
     UIView *_trayView;
     UIButton *_dictationButton;
     RadiosPreferences *_radiosPreferences;
-    NSMutableArray *_dismissedItemViews;
     NSMutableArray *_cachedHeights;
 }
 
 - (void).cxx_destruct;
-- (void)finishDismissalWithOptions:(unsigned long long)arg1;
 - (void)addDismissalAnimations;
 - (void)addPresentationAnimations;
 - (void)addContentViewAnimations:(_Bool)arg1;
 - (double)animationDuration;
 - (void)dictationButtonTapped:(id)arg1;
-- (void)dismissView:(id)arg1 toPositionY:(double)arg2 delayFactor:(unsigned long long)arg3;
 - (double)trayViewHiddenFrameOriginY;
 - (double)trayViewVisibleFrameOriginY;
 - (id)dictationButton;

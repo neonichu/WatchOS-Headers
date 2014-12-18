@@ -25,9 +25,17 @@
     PUICQuickboardHeaderView *_headerView;
     UIViewController *_presentedVC;
     PUICQuickboardTransitionCoordinator *_qbTransitionCoordinator;
+    UIView *_blackoutView;
+    UIView *_punchoutView;
+    UIView *_punchoutBackgroundView;
+    double _dismissalAnimationDuration;
 }
 
 + (double)recommendedTopContentInset;
+@property(nonatomic) double dismissalAnimationDuration; // @synthesize dismissalAnimationDuration=_dismissalAnimationDuration;
+@property(retain, nonatomic) UIView *punchoutBackgroundView; // @synthesize punchoutBackgroundView=_punchoutBackgroundView;
+@property(retain, nonatomic) UIView *punchoutView; // @synthesize punchoutView=_punchoutView;
+@property(retain, nonatomic) UIView *blackoutView; // @synthesize blackoutView=_blackoutView;
 @property(retain, nonatomic) PUICQuickboardTransitionCoordinator *qbTransitionCoordinator; // @synthesize qbTransitionCoordinator=_qbTransitionCoordinator;
 @property(nonatomic) __weak UIViewController *presentedVC; // @synthesize presentedVC=_presentedVC;
 @property(retain, nonatomic) PUICQuickboardHeaderView *headerView; // @synthesize headerView=_headerView;
@@ -43,6 +51,7 @@
 @property(nonatomic) __weak id <PUICQuickboardViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (_Bool)prefersStatusBarHidden;
+- (void)punchOutView:(id)arg1;
 - (void)addContentViewAnimations:(_Bool)arg1;
 - (void)finishDismissalWithOptions:(unsigned long long)arg1;
 - (void)addDismissalAnimationsWithOptions:(unsigned long long)arg1;

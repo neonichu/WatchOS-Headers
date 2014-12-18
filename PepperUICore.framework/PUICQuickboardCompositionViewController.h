@@ -9,7 +9,7 @@
 #import "PUICDictationViewControllerDelegate.h"
 #import "PUICQuickboardViewControllerDelegate.h"
 
-@class NSArray, NSAttributedString, NSFileHandle, NSString, PUICHighlightingView, PUICPlaceholderTextView, UIButton, UIGestureRecognizer, UIImage, UIImageView, UIScrollView, UIView;
+@class NSArray, NSAttributedString, NSData, NSFileHandle, NSString, PUICHighlightingView, PUICPlaceholderTextView, UIButton, UIGestureRecognizer, UIImage, UIImageView, UIScrollView, UIView;
 
 @interface PUICQuickboardCompositionViewController : UIViewController <PUICQuickboardViewControllerDelegate, PUICDictationViewControllerDelegate>
 {
@@ -35,7 +35,9 @@
     NSArray *_recipients;
     NSArray *_recentContacts;
     NSArray *_textOptions;
+    long long _bodyInputMode;
     NSString *_animatedEmojiName;
+    NSData *_animatedEmojiGIFData;
     long long _bodyDictationMode;
     NSFileHandle *_audioRecording;
 }
@@ -43,7 +45,9 @@
 + (id)composerWithRecipients:(id)arg1 message:(id)arg2;
 @property(retain, nonatomic) NSFileHandle *audioRecording; // @synthesize audioRecording=_audioRecording;
 @property(nonatomic) long long bodyDictationMode; // @synthesize bodyDictationMode=_bodyDictationMode;
+@property(readonly, nonatomic) NSData *animatedEmojiGIFData; // @synthesize animatedEmojiGIFData=_animatedEmojiGIFData;
 @property(copy, nonatomic) NSString *animatedEmojiName; // @synthesize animatedEmojiName=_animatedEmojiName;
+@property(nonatomic) long long bodyInputMode; // @synthesize bodyInputMode=_bodyInputMode;
 @property(nonatomic) _Bool confirmSend; // @synthesize confirmSend=_confirmSend;
 @property(nonatomic) _Bool shouldHideRecipients; // @synthesize shouldHideRecipients=_shouldHideRecipients;
 @property(nonatomic) _Bool areRecipientsEditable; // @synthesize areRecipientsEditable=_areRecipientsEditable;

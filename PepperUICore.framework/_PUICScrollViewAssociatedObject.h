@@ -6,15 +6,17 @@
 
 #import "NSObject.h"
 
-@class PUICAdditiveValueAnimator, PUICCrownInputSequencer;
+@class PUICAdditiveValueAnimator, PUICCrownInputSequencer, _PUICCrownInputInertialScroller;
 
 @interface _PUICScrollViewAssociatedObject : NSObject
 {
     long long _crownInputScrollDirection;
     PUICCrownInputSequencer *_crownInputSequencer;
     PUICAdditiveValueAnimator *_contentOffsetAnimator;
+    _PUICCrownInputInertialScroller *_inertialScroller;
 }
 
+@property(retain, nonatomic) _PUICCrownInputInertialScroller *inertialScroller; // @synthesize inertialScroller=_inertialScroller;
 @property(retain, nonatomic) PUICAdditiveValueAnimator *contentOffsetAnimator; // @synthesize contentOffsetAnimator=_contentOffsetAnimator;
 @property(retain, nonatomic) PUICCrownInputSequencer *crownInputSequencer; // @synthesize crownInputSequencer=_crownInputSequencer;
 @property(nonatomic) long long crownInputScrollDirection; // @synthesize crownInputScrollDirection=_crownInputScrollDirection;

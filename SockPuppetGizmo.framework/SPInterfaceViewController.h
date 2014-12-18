@@ -85,6 +85,7 @@
 - (void)setInterfaceItemValue:(id)arg1 property:(id)arg2;
 - (void)updateSimulatorActionTableFrame;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)prepareInterfaceForIB;
 - (void)viewDidLayoutSubviews;
 - (void)viewWillLayoutSubviews;
 - (void)viewDidDisappear:(_Bool)arg1;

@@ -41,6 +41,12 @@ struct UIEdgeInsets {
     double right;
 };
 
+struct _RunningAverage {
+    unsigned long long _field1;
+    double _field2[8];
+    double _field3[8];
+};
+
 #pragma mark Typedef'd Structures
 
 typedef struct {

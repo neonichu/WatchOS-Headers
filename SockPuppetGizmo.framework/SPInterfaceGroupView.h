@@ -18,9 +18,9 @@
     _Bool _isSection;
     _Bool _isSectionDefault;
     _Bool _isRoot;
-    _Bool _isTableRowRoot;
     _Bool _marginsSet;
     _Bool _radiusSet;
+    _Bool _heightSet;
     _Bool _backgroundSet;
     _Bool _defaultAnimate;
     id <SPInterfaceDelegate> _delegate;
@@ -46,9 +46,9 @@
 @property(nonatomic) double defaultDuration; // @synthesize defaultDuration=_defaultDuration;
 @property(copy, nonatomic) NSArray *allAnimationImages; // @synthesize allAnimationImages=_allAnimationImages;
 @property(nonatomic) _Bool backgroundSet; // @synthesize backgroundSet=_backgroundSet;
+@property(nonatomic) _Bool heightSet; // @synthesize heightSet=_heightSet;
 @property(nonatomic) _Bool radiusSet; // @synthesize radiusSet=_radiusSet;
 @property(nonatomic) _Bool marginsSet; // @synthesize marginsSet=_marginsSet;
-@property(nonatomic) _Bool isTableRowRoot; // @synthesize isTableRowRoot=_isTableRowRoot;
 @property(nonatomic) _Bool isRoot; // @synthesize isRoot=_isRoot;
 @property(nonatomic) _Bool isSectionDefault; // @synthesize isSectionDefault=_isSectionDefault;
 @property(nonatomic) _Bool isSection; // @synthesize isSection=_isSection;

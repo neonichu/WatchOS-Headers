@@ -25,6 +25,8 @@
 + (struct CGRect)_frameInSceneReferenceSpaceForStyle:(long long)arg1 orientation:(long long)arg2 inSceneWithReferenceSize:(struct CGSize)arg3;
 + (struct CGRect)_frameForStyle:(long long)arg1 orientation:(long long)arg2 inWindowOfSize:(struct CGSize)arg3;
 + (void)_newAppContextCreated:(id)arg1;
++ (unsigned long long)globalContextLayoutBehavior;
++ (void)setGlobalContextLayoutBehavior:(unsigned long long)arg1;
 @property(nonatomic) _Bool hidden; // @synthesize hidden=_hidden;
 @property(nonatomic) __weak UIViewController *keyViewController; // @synthesize keyViewController=_keyViewController;
 - (void).cxx_destruct;
@@ -57,9 +59,15 @@
 - (void)_setOverrideHeight:(double)arg1;
 - (void)setOrientation:(long long)arg1;
 - (void)setStyleDelegate:(id)arg1;
+- (id)globalContextProperties;
+- (_Bool)isTimeHidden;
 - (void)setTimeHidden:(_Bool)arg1 duration:(double)arg2 animation:(unsigned long long)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)setTimeHidden:(_Bool)arg1 animation:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)setTimeHidden:(_Bool)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
+- (_Bool)areIndicatorsHidden;
+- (void)setIndicatorsHidden:(_Bool)arg1 duration:(double)arg2 animation:(unsigned long long)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)setIndicatorsHidden:(_Bool)arg1 animation:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)setIndicatorsHidden:(_Bool)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)setHidden:(_Bool)arg1 animationParameters:(id)arg2;
 - (void)setHidden:(_Bool)arg1 animated:(_Bool)arg2;
 - (_Bool)isHidden;

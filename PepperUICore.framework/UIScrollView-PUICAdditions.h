@@ -27,10 +27,10 @@
 - (_Bool)_puic_hasEnqueuedContentOffsetAnimations;
 - (void)_puic_additivelySetContentOffset:(struct CGPoint)arg1;
 - (_Bool)crownInputSequencer:(id)arg1 shouldRubberBandAtBoundary:(long long)arg2;
-- (void)crownInputSequencerActiveDetentDidChange:(id)arg1;
 - (void)crownInputSequencerIdleDidChange:(id)arg1;
 - (void)crownInputSequencerOffsetDidChange:(id)arg1;
 - (void)_wheelChangedWithEvent:(id)arg1;
+- (id)_puic_inertialScroller;
 @property(readonly, nonatomic, getter=puic_crownInputSequencer) PUICCrownInputSequencer *crownInputSequencer;
 @property(readonly, nonatomic, getter=puic_existingCrownInputSequencer) PUICCrownInputSequencer *existingCrownInputSequencer;
 - (_Bool)canBecomeFirstResponder;

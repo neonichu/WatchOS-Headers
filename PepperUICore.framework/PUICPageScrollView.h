@@ -25,6 +25,7 @@
     _Bool _alwaysSettlesOnPages;
     unsigned long long _prefetchBuffer;
     unsigned long long _tiledPageRange;
+    long long _sizeChangeDirection;
     unsigned long long _numberOfPages;
     unsigned long long _currentPageIndex;
     CDUnknownBlockType _numberOfPagesGetter;
@@ -45,6 +46,7 @@
     CDUnknownBlockType _didStopScrollingHandler;
     CDUnknownBlockType _didStartScrollingHandler;
     CDUnknownBlockType _pageDeletionHandler;
+    CDUnknownBlockType _pageDeletionShrinkDirectionHandler;
     CDUnknownBlockType _willAnimatePageDeletionHandler;
     CDUnknownBlockType _isAnimatingPageDeletionHandler;
     CDUnknownBlockType _didAnimatePageDeletionHandler;
@@ -55,6 +57,7 @@
 @property(copy, nonatomic) CDUnknownBlockType didAnimatePageDeletionHandler; // @synthesize didAnimatePageDeletionHandler=_didAnimatePageDeletionHandler;
 @property(copy, nonatomic) CDUnknownBlockType isAnimatingPageDeletionHandler; // @synthesize isAnimatingPageDeletionHandler=_isAnimatingPageDeletionHandler;
 @property(copy, nonatomic) CDUnknownBlockType willAnimatePageDeletionHandler; // @synthesize willAnimatePageDeletionHandler=_willAnimatePageDeletionHandler;
+@property(copy, nonatomic) CDUnknownBlockType pageDeletionShrinkDirectionHandler; // @synthesize pageDeletionShrinkDirectionHandler=_pageDeletionShrinkDirectionHandler;
 @property(copy, nonatomic) CDUnknownBlockType pageDeletionHandler; // @synthesize pageDeletionHandler=_pageDeletionHandler;
 @property(copy, nonatomic) CDUnknownBlockType didStartScrollingHandler; // @synthesize didStartScrollingHandler=_didStartScrollingHandler;
 @property(copy, nonatomic) CDUnknownBlockType didStopScrollingHandler; // @synthesize didStopScrollingHandler=_didStopScrollingHandler;
@@ -77,6 +80,7 @@
 @property(readonly, nonatomic) unsigned long long numberOfPages; // @synthesize numberOfPages=_numberOfPages;
 @property(nonatomic) _Bool alwaysSettlesOnPages; // @synthesize alwaysSettlesOnPages=_alwaysSettlesOnPages;
 @property(nonatomic) _Bool tilingSuspended; // @synthesize tilingSuspended=_tilingSuspended;
+@property(nonatomic) long long sizeChangeDirection; // @synthesize sizeChangeDirection=_sizeChangeDirection;
 @property(nonatomic) unsigned long long tiledPageRange; // @synthesize tiledPageRange=_tiledPageRange;
 @property(nonatomic) unsigned long long prefetchBuffer; // @synthesize prefetchBuffer=_prefetchBuffer;
 @property(nonatomic) struct UIEdgeInsets touchInsets; // @synthesize touchInsets=_touchInsets;

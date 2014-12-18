@@ -27,6 +27,7 @@
 }
 
 + (id)sharedInstance;
++ (id)unpackMessageData:(id)arg1;
 - (void).cxx_destruct;
 - (void)confirmDeliveryOfOutgoingMessage:(id)arg1;
 - (void)updateOutgoingMessageWithIdentifier:(id)arg1 didReceiveResponse:(_Bool)arg2 error:(id)arg3;

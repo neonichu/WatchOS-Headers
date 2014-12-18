@@ -28,6 +28,7 @@
 + (Class)_statusBarClass;
 + (id)sharedPUICApplication;
 + (id)_puicUserDefaults;
++ (double)topWindowLevel;
 @property(retain, nonatomic) PUICActionWindowListener *windowListener; // @synthesize windowListener=_windowListener;
 @property(retain, nonatomic) PUICZoomModel *zoomModel; // @synthesize zoomModel=_zoomModel;
 @property(retain, nonatomic) PUICWheelHandler *wheelHandler; // @synthesize wheelHandler=_wheelHandler;
@@ -44,6 +45,8 @@
 @property(readonly, nonatomic) UIColor *primaryApplicationColor;
 - (void)dealloc;
 - (_Bool)_shouldDelayTouchesForControlCenter;
+- (unsigned long long)_statusBarGlobalContextLayoutBehavior;
+- (void)_setStatusBarGlobalContextLayoutBehavior:(unsigned long long)arg1;
 - (void)statusBarReleaseDisableAppContextAnimationsAssertion;
 - (void)statusBarTakeDisableAppContextAnimationsAssertion;
 - (id)statusBarCurrentApplicationContextDataSource;
@@ -53,6 +56,11 @@
 - (void)setStatusBarKeyController:(id)arg1 animated:(_Bool)arg2;
 - (id)_takeStatusBarGlobalContextAssertion;
 - (id)_takeStatusBarAppContextAssertion;
+- (_Bool)_areStatusBarIndicatorsHidden;
+- (void)_setStatusBarIndicatorsHidden:(_Bool)arg1 duration:(double)arg2 animation:(unsigned long long)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)_setStatusBarIndicatorsHidden:(_Bool)arg1 animation:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_setStatusBarIndicatorsHidden:(_Bool)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
+- (_Bool)_isStatusBarTimeHidden;
 - (void)_setStatusBarTimeHidden:(_Bool)arg1 duration:(double)arg2 animation:(unsigned long long)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_setStatusBarTimeHidden:(_Bool)arg1 animation:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_setStatusBarTimeHidden:(_Bool)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
@@ -63,6 +71,7 @@
 - (struct CGAffineTransform)_rotationTransformForOrientation:(long long)arg1;
 - (void)_orientationChanged:(id)arg1;
 - (void)_overrideMainScreenDefaultTraitCollection;
+- (void)_setupUnblankingSynchronization;
 - (void)_applicationDidBecomeActiveNotification:(id)arg1;
 - (id)init;
 - (void)setupZoomModel;

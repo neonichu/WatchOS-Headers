@@ -29,9 +29,13 @@
     double _heightAdjustment;
     UIColor *_titleColor;
     struct CGSize _fixedSize;
+    struct CGSize _cachedContainerSize;
+    struct CGSize _cachedSize;
 }
 
 @property(retain, nonatomic) UIColor *titleColor; // @synthesize titleColor=_titleColor;
+@property(nonatomic) struct CGSize cachedSize; // @synthesize cachedSize=_cachedSize;
+@property(nonatomic) struct CGSize cachedContainerSize; // @synthesize cachedContainerSize=_cachedContainerSize;
 @property(nonatomic) struct CGSize fixedSize; // @synthesize fixedSize=_fixedSize;
 @property(nonatomic) double heightAdjustment; // @synthesize heightAdjustment=_heightAdjustment;
 @property(nonatomic) double height; // @synthesize height=_height;

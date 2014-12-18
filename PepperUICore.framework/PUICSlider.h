@@ -30,10 +30,8 @@
     float _pillHighlightedGlowOpacity;
     id <PUICSliderDelegate> _delegate;
     unsigned long long _numberOfSteps;
-    double _offsetPerCrownRevolution;
 }
 
-@property(nonatomic) double offsetPerCrownRevolution; // @synthesize offsetPerCrownRevolution=_offsetPerCrownRevolution;
 @property(nonatomic) float pillHighlightedGlowOpacity; // @synthesize pillHighlightedGlowOpacity=_pillHighlightedGlowOpacity;
 @property(nonatomic) _Bool shouldFadeAccessoryImages; // @synthesize shouldFadeAccessoryImages=_shouldFadeAccessoryImages;
 @property(nonatomic) _Bool shouldAutomaticallAdjustValueOnTouch; // @synthesize shouldAutomaticallAdjustValueOnTouch=_shouldAutomaticallAdjustValueOnTouch;
@@ -53,6 +51,7 @@
 - (void)_setValue:(float)arg1 animated:(_Bool)arg2 sendAction:(_Bool)arg3;
 - (void)crownInputSequencerIdleDidChange:(id)arg1;
 - (void)crownInputSequencerOffsetDidChange:(id)arg1;
+- (void)_updateSequencerConfiguration;
 - (void)_wheelChangedWithEvent:(id)arg1;
 - (_Bool)canBecomeFirstResponder;
 @property(readonly, nonatomic) double cornerRadius;

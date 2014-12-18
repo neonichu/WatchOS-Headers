@@ -50,6 +50,7 @@
 + (void)clearStorageForController:(id)arg1;
 + (void)_setupStorageForController:(id)arg1;
 + (id)SerializablePropertyValue:(id)arg1;
++ (void)_updateAccessibility;
 + (id)_remoteIdentifier;
 + (id)startRemoteInterface;
 @property(copy, nonatomic) CDUnknownBlockType textInputCompletion; // @synthesize textInputCompletion=_textInputCompletion;
@@ -64,6 +65,7 @@
 @property(retain, nonatomic) NSMutableArray *activeComplicationsConnections; // @synthesize activeComplicationsConnections=_activeComplicationsConnections;
 @property(retain, nonatomic) id <SPRemoteInterfaceDataDelegateProtocol> dataDelegate; // @synthesize dataDelegate=_dataDelegate;
 - (void).cxx_destruct;
+- (id)controllerMethods:(id)arg1;
 - (void)_fillDataWithRandom:(id)arg1 length:(long long)arg2;
 - (void)getComplicationData:(id)arg1;
 - (void)dataInterfaceWillResignActive:(id)arg1;

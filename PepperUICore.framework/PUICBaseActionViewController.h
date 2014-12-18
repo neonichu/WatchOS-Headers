@@ -37,6 +37,7 @@
 - (void)setupDidAppear;
 - (void)setupWillAppear;
 - (void)_generateBlur;
+- (void)_swipeBack;
 - (void)viewDidLoad;
 - (struct CGRect)_defaultInitialViewFrame;
 - (void)_setSourceView:(id)arg1;

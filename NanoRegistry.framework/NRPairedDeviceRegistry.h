@@ -22,6 +22,7 @@
     NSMutableDictionary *_mutableDeviceDictionary;
     NSUUID *_pairingDeviceID;
     NRFrameworkDevice *_pairingDevice;
+    NRFrameworkDevice *_pairedDevice;
     double _reconnectDelay;
     NSObject<OS_dispatch_queue> *_pdrQueue;
     NSObject<OS_dispatch_queue> *_deviceQueue;
@@ -47,6 +48,7 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *deviceQueue; // @synthesize deviceQueue=_deviceQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *pdrQueue; // @synthesize pdrQueue=_pdrQueue;
 @property(nonatomic) double reconnectDelay; // @synthesize reconnectDelay=_reconnectDelay;
+@property(retain, nonatomic) NRFrameworkDevice *pairedDevice; // @synthesize pairedDevice=_pairedDevice;
 @property(retain, nonatomic) NRFrameworkDevice *pairingDevice; // @synthesize pairingDevice=_pairingDevice;
 @property(retain, nonatomic) NSUUID *pairingDeviceID; // @synthesize pairingDeviceID=_pairingDeviceID;
 @property(retain, nonatomic) NSMutableDictionary *mutableDeviceDictionary; // @synthesize mutableDeviceDictionary=_mutableDeviceDictionary;
@@ -73,6 +75,21 @@
 - (void)_xpcFrameworkInitializationSuccessWithStatus:(unsigned long long)arg1 andDevices:(id)arg2 andPairingDeviceID:(id)arg3 andPairingDevice:(id)arg4 hasEntitlements:(_Bool)arg5 andCompatibilityState:(unsigned short)arg6 andCompatibilityVersion:(long long)arg7;
 - (_Bool)_xpcEnsureFrameworkInitialized;
 - (void)_xpcInitializeConnection;
+- (void)_addRemoveRecoveryStepIDSFinalize:(_Bool)arg1;
+- (void)_addRemoveRecoveryStepObliterate:(_Bool)arg1 withStatePath:(id)arg2;
+- (void)_addRemoveRecoveryStepResetNVRAM:(_Bool)arg1;
+- (void)_addRemoveRecoveryStepStockholmReset:(_Bool)arg1;
+- (void)_addRemoveRecoveryStepIDSUnpair:(_Bool)arg1 withPairingDeviceID:(id)arg2;
+- (void)_addRemoveRecoveryStepUnpairBluetooth:(_Bool)arg1 withPairingDeviceID:(id)arg2;
+- (void)_addRemoveRecoveryStepDeletePairingStore:(_Bool)arg1 withPairingDeviceID:(id)arg2;
+- (void)_addRemoveRecoveryStepRemoteUnpair:(_Bool)arg1 withAdvertisedName:(id)arg2 andPairedDeviceID:(id)arg3;
+- (void)_addRemoveRecoveryStepIDSUnpairStart:(_Bool)arg1;
+- (void)_addRemoveRecoveryStepDeleteAccounts:(_Bool)arg1;
+- (void)_addRemoveRecoveryStepBackup:(_Bool)arg1 withPairingDeviceID:(id)arg2;
+- (void)_addRemoveRecoveryStepDisableDaemons:(_Bool)arg1;
+- (void)_setObliterationEnabled:(_Bool)arg1;
+- (void)_triggerRecovery;
+- (id)_recoveryDescription;
 - (unsigned int)minorVersion;
 - (unsigned int)majorVersion;
 - (_Bool)isPaired;

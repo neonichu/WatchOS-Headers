@@ -10,10 +10,12 @@
 
 @interface PUICQuickboardMessageViewController : PUICQuickboardListViewController
 {
+    _Bool _allowsEmojiInput;
     NSArray *_messages;
 }
 
 + (id)emojiImage;
+@property(nonatomic) _Bool allowsEmojiInput; // @synthesize allowsEmojiInput=_allowsEmojiInput;
 @property(retain, nonatomic) NSArray *messages; // @synthesize messages=_messages;
 - (void).cxx_destruct;
 - (void)emojiButtonTapped:(id)arg1;
@@ -22,6 +24,7 @@
 - (id)cellForListItem:(long long)arg1;
 - (double)heightForListItem:(long long)arg1 width:(double)arg2;
 - (long long)numberOfListItems;
+- (id)initWithDelegate:(id)arg1;
 - (id)newCell;
 
 @end

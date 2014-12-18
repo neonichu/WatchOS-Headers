@@ -26,10 +26,14 @@
     id _target;
     SEL _action;
     struct CGSize _fixedSize;
+    struct CGSize _cachedContainerSize;
+    struct CGSize _cachedSize;
 }
 
 @property(nonatomic) SEL action; // @synthesize action=_action;
 @property(nonatomic) id target; // @synthesize target=_target;
+@property(nonatomic) struct CGSize cachedSize; // @synthesize cachedSize=_cachedSize;
+@property(nonatomic) struct CGSize cachedContainerSize; // @synthesize cachedContainerSize=_cachedContainerSize;
 @property(nonatomic) struct CGSize fixedSize; // @synthesize fixedSize=_fixedSize;
 @property(nonatomic) double heightAdjustment; // @synthesize heightAdjustment=_heightAdjustment;
 @property(nonatomic) double height; // @synthesize height=_height;

@@ -29,6 +29,7 @@
 - (void)deviceSyncStateDidChange:(unsigned long long)arg1;
 - (void)pairingUpdated;
 - (void)_reloadPersistentData;
+- (void)_reloadPairingStorePath;
 - (unsigned long long)_restrictionForCurrentState;
 - (void)_updateSyncRestrictionIfNeeded;
 - (id)_dataFileName;

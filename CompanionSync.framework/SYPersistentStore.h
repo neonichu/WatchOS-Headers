@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSError, NSObject<OS_dispatch_queue>, NSSet, NSString, NSTimer;
+@class NSDictionary, NSError, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
 @interface SYPersistentStore : NSObject
 {
@@ -14,6 +14,7 @@
     struct __CFString *_loggingFacility;
     double _timeToLiveCache;
     _Bool _changeTrackingEnabled;
+    NSMutableDictionary *_peerSeqnoSets;
     NSObject<OS_dispatch_queue> *_syncQ;
     struct sqlite3 *_db;
     struct sqlite3_stmt *_getInFullSync;
@@ -30,6 +31,7 @@
     struct sqlite3_stmt *_setVectorClock;
     struct sqlite3_stmt *_setPeerSeqNo;
     struct sqlite3_stmt *_getPeerSeqNo;
+    struct sqlite3_stmt *_setPeerSeqNoSet;
     struct sqlite3_stmt *_enterFullSync;
     struct sqlite3_stmt *_exitFullSync;
     struct sqlite3_stmt *_getIgnoringSyncID;
@@ -48,10 +50,8 @@
     NSString *_peerID;
     NSSet *_cachedChangedSyncIDs;
     unsigned long long _cachedChangedSyncIDsVersion;
-    NSTimer *_expirationTimer;
 }
 
-@property(retain, nonatomic) NSTimer *expirationTimer; // @synthesize expirationTimer=_expirationTimer;
 @property(nonatomic) _Bool cachedVersionStale; // @synthesize cachedVersionStale=_cachedVersionStale;
 @property(nonatomic) unsigned long long cachedChangedSyncIDsVersion; // @synthesize cachedChangedSyncIDsVersion=_cachedChangedSyncIDsVersion;
 @property(retain, nonatomic) NSSet *cachedChangedSyncIDs; // @synthesize cachedChangedSyncIDs=_cachedChangedSyncIDs;
@@ -81,15 +81,18 @@
 - (void)enterFullSyncWithID:(id)arg1 ignoring:(_Bool)arg2;
 @property(retain, nonatomic) NSString *vectorClockJSON;
 @property(readonly, nonatomic) unsigned long long changeCount;
-- (void)expirationTimerFired:(id)arg1;
-- (void)setExpirationTimer;
 - (void)expireChanges;
 @property(nonatomic) double timeToLive;
 @property(readonly, nonatomic) NSString *path;
+- (_Bool)sequenceNumberIsDuplicate:(unsigned long long)arg1 forPeer:(id)arg2;
 - (unsigned long long)lastSequenceNumberForPeerID:(id)arg1;
 - (void)setLastSequenceNumber:(unsigned long long)arg1 fromPeer:(id)arg2;
 - (unsigned long long)nextSequenceNumber;
 - (void)_cacheTTL;
+- (void)_storeSequenceNumberSet:(id)arg1 forPeerID:(id)arg2;
+- (id)_sequenceNumberSetForPeerID:(id)arg1;
+- (id)_decodeIndexSet:(id)arg1;
+- (id)_encodeIndexSet:(id)arg1;
 - (void)_fixPeerInfo;
 - (_Bool)_inTransaction:(_Bool)arg1 do:(CDUnknownBlockType)arg2;
 - (void)_convertTimestamps;

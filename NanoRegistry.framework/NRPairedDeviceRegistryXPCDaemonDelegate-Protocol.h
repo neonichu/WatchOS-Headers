@@ -9,6 +9,21 @@
 @class NSData, NSNumber, NSString, NSUUID;
 
 @protocol NRPairedDeviceRegistryXPCDaemonDelegate <NRPropertyXPCDaemonDelegate>
+- (void)xpcAddRemoveRecoveryStepIDSFinalize:(_Bool)arg1 block:(void (^)(void))arg2;
+- (void)xpcAddRemoveRecoveryStepObliterate:(_Bool)arg1 withStatePath:(NSString *)arg2 block:(void (^)(void))arg3;
+- (void)xpcAddRemoveRecoveryStepResetNVRAM:(_Bool)arg1 block:(void (^)(void))arg2;
+- (void)xpcAddRemoveRecoveryStepStockholmReset:(_Bool)arg1 block:(void (^)(void))arg2;
+- (void)xpcAddRemoveRecoveryStepIDSUnpair:(_Bool)arg1 withPairingDeviceID:(NSUUID *)arg2 block:(void (^)(void))arg3;
+- (void)xpcAddRemoveRecoveryStepUnpairBluetooth:(_Bool)arg1 withPairingDeviceID:(NSUUID *)arg2 block:(void (^)(void))arg3;
+- (void)xpcAddRemoveRecoveryStepDeletePairingStore:(_Bool)arg1 withPairingDeviceID:(NSUUID *)arg2 block:(void (^)(void))arg3;
+- (void)xpcAddRemoveRecoveryStepRemoteUnpair:(_Bool)arg1 withAdvertisedName:(NSString *)arg2 andPairedDeviceID:(NSUUID *)arg3 block:(void (^)(void))arg4;
+- (void)xpcAddRemoveRecoveryStepIDSUnpairStart:(_Bool)arg1 block:(void (^)(void))arg2;
+- (void)xpcAddRemoveRecoveryStepDeleteAccounts:(_Bool)arg1 block:(void (^)(void))arg2;
+- (void)xpcAddRemoveRecoveryStepBackup:(_Bool)arg1 withPairingDeviceID:(NSUUID *)arg2 block:(void (^)(void))arg3;
+- (void)xpcAddRemoveRecoveryStepDisableDaemons:(_Bool)arg1 block:(void (^)(void))arg2;
+- (void)xpcSetObliterationEnabled:(_Bool)arg1 block:(void (^)(void))arg2;
+- (void)xpcTriggerRecovery:(void (^)(void))arg1;
+- (void)xpcRecoveryDescription:(void (^)(NSString *))arg1;
 - (void)xpcResumePairingClientCrashMonitoring:(void (^)(void))arg1;
 - (void)xpcSuspendPairingClientCrashMonitoring:(void (^)(void))arg1;
 - (void)xpcPairingShouldContinue;

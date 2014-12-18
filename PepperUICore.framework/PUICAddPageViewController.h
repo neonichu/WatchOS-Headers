@@ -24,6 +24,9 @@
 - (void).cxx_destruct;
 - (void)_stopOnPageBoundary;
 - (void)idleDidChange:(id)arg1;
+- (void)_crownIndicatorVisible:(_Bool)arg1 animated:(_Bool)arg2;
+- (void)_crownIndicatorVisible:(_Bool)arg1;
+- (void)willDisappearForPageSelection;
 - (void)_activationButtonPress;
 - (void)deactivateWithAdditionalAnimations:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)activateWithAdditionalAnimations:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;

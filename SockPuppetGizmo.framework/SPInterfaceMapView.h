@@ -28,6 +28,8 @@
     UIView *_activityIndicatorContainerView;
     NSTimer *_activityTimer;
     struct CGSize _fixedSize;
+    struct CGSize _cachedContainerSize;
+    struct CGSize _cachedSize;
     CDStruct_feeb6407 _region;
 }
 
@@ -37,6 +39,8 @@
 @property(retain, nonatomic) MKMapSnapshot *snapshot; // @synthesize snapshot=_snapshot;
 @property(nonatomic) CDStruct_feeb6407 region; // @synthesize region=_region;
 @property(nonatomic) _Bool enabled; // @synthesize enabled=_enabled;
+@property(nonatomic) struct CGSize cachedSize; // @synthesize cachedSize=_cachedSize;
+@property(nonatomic) struct CGSize cachedContainerSize; // @synthesize cachedContainerSize=_cachedContainerSize;
 @property(nonatomic) struct CGSize fixedSize; // @synthesize fixedSize=_fixedSize;
 @property(nonatomic) double heightAdjustment; // @synthesize heightAdjustment=_heightAdjustment;
 @property(nonatomic) double height; // @synthesize height=_height;

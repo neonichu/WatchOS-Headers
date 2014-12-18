@@ -16,7 +16,6 @@
     double _lastCrownInputEventTimeInterval;
     double _velocity;
     double _rawVelocity;
-    double _acceleration;
     _UIDynamicValueAnimation *_offsetRubberBandAnimator;
     double _offsetWithoutRubberBanding;
     double _snappedRubberBandDeadbandTime;
@@ -72,7 +71,6 @@
 @property(readonly, nonatomic, getter=isIdle) _Bool idle; // @synthesize idle=_idle;
 @property(nonatomic) double screenSpaceMultiplier; // @synthesize screenSpaceMultiplier=_screenSpaceMultiplier;
 @property(nonatomic, getter=isRubberBandingEnabled) _Bool rubberBandingEnabled; // @synthesize rubberBandingEnabled=_rubberBandingEnabled;
-@property(readonly, nonatomic) double acceleration; // @synthesize acceleration=_acceleration;
 @property(nonatomic) double offset; // @synthesize offset=_offset;
 @property(nonatomic, getter=isContinuous) _Bool continuous; // @synthesize continuous=_continuous;
 @property(nonatomic) double visibleLength; // @synthesize visibleLength=_visibleLength;
@@ -107,6 +105,7 @@
 - (void)reloadData;
 @property(readonly, nonatomic, getter=isRubberBanding) _Bool rubberBanding;
 - (void)_updateVisibleCrownIndicator;
+- (void)_createCrownIndicatorIfNecessary;
 - (void)setNonCrownIndicatorVisible:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)setCrownIndicatorVisible:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)_setCrownIndicatorVisible:(_Bool)arg1 animated:(_Bool)arg2 usingCrown:(_Bool)arg3;

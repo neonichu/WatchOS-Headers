@@ -10,7 +10,7 @@
 #import "NMSMessageCenterDelegate.h"
 #import "SYChangeTracking.h"
 
-@class NMSMessageCenter, NSDictionary, NSMutableIndexSet, NSObject<OS_dispatch_queue>, NSString, NSTimer, NSUUID, SYPersistentStore, SYVectorClock;
+@class NMSMessageCenter, NSDictionary, NSMutableIndexSet, NSObject<OS_dispatch_queue>, NSString, NSUUID, SYPersistentStore, SYVectorClock;
 
 @interface SYStore : NSObject <IDSServiceDelegate, NMSMessageCenterDelegate, SYChangeTracking>
 {
@@ -34,6 +34,7 @@
         unsigned int delegateDidUnpair:1;
         unsigned int delegateSentMessage:1;
         unsigned int delegatePeerProcessedMessage:1;
+        unsigned int delegateSentLastSyncMessage:1;
     } _flags;
     _Bool _allowsDeletes;
     _Bool _encryptPayloads;
@@ -48,7 +49,6 @@
     long long _idsPriority;
     SYPersistentStore *_persistentStore;
     NSObject<OS_dispatch_queue> *_queue;
-    NSTimer *_expirationTimer;
     struct __CFString *_loggingFacility;
     NSUUID *_pairedDeviceID;
     NMSMessageCenter *_messageCenter;
@@ -64,7 +64,6 @@
 @property(nonatomic) _Bool registeredNotificationHandlers; // @synthesize registeredNotificationHandlers=_registeredNotificationHandlers;
 @property(retain, nonatomic) NSUUID *pairedDeviceID; // @synthesize pairedDeviceID=_pairedDeviceID;
 @property(nonatomic) struct __CFString *loggingFacility; // @synthesize loggingFacility=_loggingFacility;
-@property(retain, nonatomic) NSTimer *expirationTimer; // @synthesize expirationTimer=_expirationTimer;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(retain, nonatomic) SYPersistentStore *persistentStore; // @synthesize persistentStore=_persistentStore;
 @property(nonatomic) _Bool alwaysWins; // @synthesize alwaysWins=_alwaysWins;

@@ -17,10 +17,14 @@
 
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
+- (id)_localizedNameForGlance:(id)arg1;
+- (unsigned long long)_numberOfActiveGlances;
+- (_Bool)hasMaximumNumberOfActiveGlances;
 - (void)loadSettings;
 - (id)glanceIdentifierForGlanceDefinitionAtIndex:(unsigned long long)arg1;
 - (void)_saveSettings;
 - (void)saveSettings;
+- (id)glanceDefinitionForWatchKitIdentifier:(id)arg1;
 - (id)glanceDefinitionForGlanceIdentifier:(id)arg1;
 - (id)glanceDefinitionForAppBundleIdentifier:(id)arg1;
 - (void)moveGlanceDefinitionFromIndex:(unsigned long long)arg1 toIndex:(unsigned long long)arg2;

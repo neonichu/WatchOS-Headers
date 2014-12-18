@@ -6,24 +6,24 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class UIView;
 
 @interface ORBWindowScaler : NSObject
 {
-    NSArray *_scalingViews;
-    double _topWindowLevel;
     float _scale;
     float _presentedScale;
+    UIView *_scalingView;
+    CDUnknownBlockType _duration;
 }
 
 + (id)sharedScaler;
+@property(copy, nonatomic) CDUnknownBlockType duration; // @synthesize duration=_duration;
+@property(nonatomic) __weak UIView *scalingView; // @synthesize scalingView=_scalingView;
 - (void).cxx_destruct;
+- (void)_setDefaultDuration;
 - (void)_setScale:(float)arg1 duration:(double)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)setDefaultScaleWithRubberBanding:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)setScale:(float)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)setupScalingWindows;
-- (void)setCustomViewForScaling:(id)arg1;
-@property(readonly, nonatomic) double topWindowLevel;
 - (id)init;
 
 @end

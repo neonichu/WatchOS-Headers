@@ -30,7 +30,7 @@
 - (void)getRemoteDeviceState:(CDUnknownBlockType)arg1;
 - (void)getRemoteDevicePasscodeState:(CDUnknownBlockType)arg1;
 - (void)requestRemoteDeviceUnlockNotification;
-- (void)requestRemoteDevicePasscodeAction:(long long)arg1;
+- (void)requestRemoteDevicePasscodeAction:(long long)arg1 type:(long long)arg2;
 - (void)setUnlockEnabled:(_Bool)arg1;
 - (void)disableOnlyRemoteUnlock;
 - (void)enableOnlyRemoteUnlockWithPasscode:(id)arg1;
