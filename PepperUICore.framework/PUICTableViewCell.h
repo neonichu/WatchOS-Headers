@@ -23,6 +23,7 @@
     PUICTableViewCellActionBar *_actionBar;
 }
 
++ (double)deselectCellAnimationDuration;
 + (double)defaultContentHeight;
 + (double)defaultCellHeight;
 + (id)cellIdentifier;

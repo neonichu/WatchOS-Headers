@@ -27,6 +27,7 @@
 - (void)deleteDataForAsset:(id)arg1;
 - (void)saveAssetData:(id)arg1 forAsset:(id)arg2;
 - (void)clearedCache;
+- (id)cachedImages;
 - (void)deleteAllAssets;
 - (void)deletedAssetWithName:(id)arg1;
 - (void)deleteAssetWithName:(id)arg1;

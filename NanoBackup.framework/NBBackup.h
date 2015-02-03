@@ -20,6 +20,7 @@
     NSString *_productType;
     NSString *_systemVersion;
     NSString *_systemBuildVersion;
+    NSString *_marketingVersion;
     NSString *_deviceColor;
     NSString *_deviceEnclosureColor;
     NSNumber *_bottomEnclosureMaterial;
@@ -50,6 +51,7 @@
 @property(retain, nonatomic) NSNumber *bottomEnclosureMaterial; // @synthesize bottomEnclosureMaterial=_bottomEnclosureMaterial;
 @property(retain, nonatomic) NSString *deviceEnclosureColor; // @synthesize deviceEnclosureColor=_deviceEnclosureColor;
 @property(retain, nonatomic) NSString *deviceColor; // @synthesize deviceColor=_deviceColor;
+@property(retain, nonatomic) NSString *marketingVersion; // @synthesize marketingVersion=_marketingVersion;
 @property(retain, nonatomic) NSString *systemBuildVersion; // @synthesize systemBuildVersion=_systemBuildVersion;
 @property(retain, nonatomic) NSString *systemVersion; // @synthesize systemVersion=_systemVersion;
 @property(retain, nonatomic) NSString *productType; // @synthesize productType=_productType;

@@ -13,6 +13,7 @@
     NSString *_path;
     struct sqlite3 *_db;
     struct sqlite3_stmt *_insertIncoming;
+    struct sqlite3_stmt *_addProcessingTimeIncoming;
     struct sqlite3_stmt *_addErrorIncoming;
     struct sqlite3_stmt *_markCompleteIncoming;
     struct sqlite3_stmt *_insertOutgoing;
@@ -36,6 +37,7 @@
 - (void)recordOutgoingMessage:(id)arg1 forService:(id)arg2;
 - (void)markLastIncomingMessageComplete;
 - (void)updateLastIncomingMessageWithError:(id)arg1;
+- (void)updateLastIncomingMessageWithProcessingTime:(double)arg1;
 - (void)recordIncomingMessage:(id)arg1 forService:(id)arg2;
 - (id)_unpackMessageData:(id)arg1;
 - (void)_unpackPBResponse:(id)arg1 forMessageID:(unsigned short)arg2 intoDictionary:(id)arg3;

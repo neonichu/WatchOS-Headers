@@ -9,9 +9,11 @@
 @class NSData, NSNumber, NSString, NSUUID;
 
 @protocol NRPairedDeviceRegistryXPCDaemonDelegate <NRPropertyXPCDaemonDelegate>
+- (void)xpcRetriggerUnpairInfoDialogWithBlock:(void (^)(void))arg1;
 - (void)xpcAddRemoveRecoveryStepIDSFinalize:(_Bool)arg1 block:(void (^)(void))arg2;
 - (void)xpcAddRemoveRecoveryStepObliterate:(_Bool)arg1 withStatePath:(NSString *)arg2 block:(void (^)(void))arg3;
 - (void)xpcAddRemoveRecoveryStepResetNVRAM:(_Bool)arg1 block:(void (^)(void))arg2;
+- (void)xpcAddRemoveRecoveryStepICloudDeletePaymentCards:(_Bool)arg1 block:(void (^)(void))arg2;
 - (void)xpcAddRemoveRecoveryStepStockholmReset:(_Bool)arg1 block:(void (^)(void))arg2;
 - (void)xpcAddRemoveRecoveryStepIDSUnpair:(_Bool)arg1 withPairingDeviceID:(NSUUID *)arg2 block:(void (^)(void))arg3;
 - (void)xpcAddRemoveRecoveryStepUnpairBluetooth:(_Bool)arg1 withPairingDeviceID:(NSUUID *)arg2 block:(void (^)(void))arg3;
@@ -31,11 +33,11 @@
 - (void)xpcNotifyPasscode:(NSNumber *)arg1 withDeviceID:(NSUUID *)arg2;
 - (void)xpcNotifyActivationCompleted:(NSUUID *)arg1 withSuccess:(_Bool)arg2;
 - (void)xpcEnterCompatibilityState:(unsigned short)arg1 withDeviceID:(NSUUID *)arg2;
-- (void)xpcAbortPairing:(void (^)(unsigned long long))arg1;
+- (void)xpcAbortPairingReason:(NSString *)arg1 withBlock:(void (^)(unsigned long long))arg2;
 - (void)xpcGizmoPasscodeAdvertiseAndPairWithName:(NSString *)arg1 operationHasBegun:(void (^)(NSError *, unsigned long long))arg2;
 - (void)xpcGizmoOOBAdvertiseAndPairWithName:(NSString *)arg1 operationHasBegun:(void (^)(NSError *, unsigned long long))arg2;
 - (void)xpcCompanionPasscodePairWithDeviceID:(NSUUID *)arg1 operationHasBegun:(void (^)(NSError *, unsigned long long))arg2;
 - (void)xpcCompanionOOBDiscoverAndPairWithName:(NSString *)arg1 withOutOfBandPairingKey:(NSData *)arg2 operationHasBegun:(void (^)(NSError *, unsigned long long))arg3;
-- (void)xpcQueryStatus:(NSUUID *)arg1 statusData:(void (^)(unsigned long long, NSDictionary *, NSUUID *, NRDevice *, _Bool, unsigned short, long long))arg2;
+- (void)xpcQueryStatus:(NSUUID *)arg1 statusData:(void (^)(unsigned long long, NSDictionary *, NSUUID *, NRDevice *, _Bool, unsigned short, long long, unsigned long long))arg2;
 @end
 

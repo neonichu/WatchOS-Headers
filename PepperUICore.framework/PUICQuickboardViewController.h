@@ -8,7 +8,7 @@
 
 #import "PUICQuickboardTransition.h"
 
-@class NSString, PUICQuickboardHeaderView, PUICQuickboardTransitionCoordinator, UIButton, UIView;
+@class NSString, PUICQuickboardTransitionCoordinator, UIButton, UIView;
 
 @interface PUICQuickboardViewController : UIViewController <PUICQuickboardTransition>
 {
@@ -19,10 +19,11 @@
     UIButton *_cancelButton;
     UIButton *_acceptButton;
     NSString *_acceptButtonTitle;
+    unsigned long long _dismissMode;
     UIViewController *_dismissalViewController;
     unsigned long long _quickboardType;
     UIView *_backgroundView;
-    PUICQuickboardHeaderView *_headerView;
+    UIView *_headerView;
     UIViewController *_presentedVC;
     PUICQuickboardTransitionCoordinator *_qbTransitionCoordinator;
     UIView *_blackoutView;
@@ -38,11 +39,12 @@
 @property(retain, nonatomic) UIView *blackoutView; // @synthesize blackoutView=_blackoutView;
 @property(retain, nonatomic) PUICQuickboardTransitionCoordinator *qbTransitionCoordinator; // @synthesize qbTransitionCoordinator=_qbTransitionCoordinator;
 @property(nonatomic) __weak UIViewController *presentedVC; // @synthesize presentedVC=_presentedVC;
-@property(retain, nonatomic) PUICQuickboardHeaderView *headerView; // @synthesize headerView=_headerView;
+@property(retain, nonatomic) UIView *headerView; // @synthesize headerView=_headerView;
 @property(retain, nonatomic) UIView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(nonatomic) unsigned long long quickboardType; // @synthesize quickboardType=_quickboardType;
 @property(nonatomic) __weak UIViewController *dismissalViewController; // @synthesize dismissalViewController=_dismissalViewController;
 @property(nonatomic) _Bool animatesSelectionToDestinationView; // @synthesize animatesSelectionToDestinationView=_animatesSelectionToDestinationView;
+@property(nonatomic) unsigned long long dismissMode; // @synthesize dismissMode=_dismissMode;
 @property(nonatomic) _Bool confirmSend; // @synthesize confirmSend=_confirmSend;
 @property(copy, nonatomic) NSString *acceptButtonTitle; // @synthesize acceptButtonTitle=_acceptButtonTitle;
 @property(retain, nonatomic) UIButton *acceptButton; // @synthesize acceptButton=_acceptButton;
@@ -51,6 +53,8 @@
 @property(nonatomic) __weak id <PUICQuickboardViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (_Bool)prefersStatusBarHidden;
+- (void)blackPunchOutView:(id)arg1;
+- (void)transparentPunchOutView:(id)arg1;
 - (void)punchOutView:(id)arg1;
 - (void)addContentViewAnimations:(_Bool)arg1;
 - (void)finishDismissalWithOptions:(unsigned long long)arg1;
@@ -63,7 +67,10 @@
 - (void)_cancelButtonTapped:(id)arg1;
 - (void)setShowsAcceptButton:(_Bool)arg1 animated:(_Bool)arg2;
 @property(nonatomic) _Bool showsAcceptButton;
+- (void)viewDidDisappear:(_Bool)arg1;
+- (void)viewDidAppear:(_Bool)arg1;
 - (void)loadView;
+- (void)dealloc;
 - (id)initWithDelegate:(id)arg1;
 
 // Remaining properties

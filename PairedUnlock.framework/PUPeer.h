@@ -30,7 +30,8 @@
 - (void)didGetPasscodeState:(id)arg1;
 - (void)setShouldNotifyNextUnlock:(id)arg1;
 - (void)didUnlock:(id)arg1;
-- (void)requestDisableOnlyRemoteUnlock:(id)arg1;
+- (void)removeLockout:(id)arg1;
+- (void)disableOnlyRemoteUnlock:(id)arg1;
 - (void)startPasscodeAction:(id)arg1;
 - (_Bool)isUnlockOnly;
 - (_Bool)_isCurrentlyLocked;
@@ -40,8 +41,10 @@
 - (id)_retrieveUnlockOnlyPasscode;
 - (void)enableOnlyRemoteUnlockWithPasscode:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)_createAndStoreNewPasscodeWithCurrentPasscode:(id)arg1;
+- (void)notifyCurrentState;
 - (void)getRemoteDeviceState:(CDUnknownBlockType)arg1;
 - (void)unpairForUnlockWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)requestRemoteDeviceRemoveLockout:(CDUnknownBlockType)arg1;
 - (void)requestRemoteDeviceDisableOnlyRemoteUnlock;
 - (void)requestRemoteDeviceUnlockNotification;
 - (void)requestRemoteDevicePasscodeAction:(long long)arg1 type:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;

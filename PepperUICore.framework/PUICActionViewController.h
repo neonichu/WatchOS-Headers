@@ -8,7 +8,7 @@
 
 #import "UIGestureRecognizerDelegate.h"
 
-@class NSArray, NSMapTable, NSMutableArray, NSString, PUICActionCancelGestureRecognizer, PUICActionGroup, PUICActionItem, PUICApplicationStatusBarItem, UILabel, UIView, UIViewController;
+@class NSArray, NSMapTable, NSMutableArray, NSString, PUICActionCancelGestureRecognizer, PUICActionGroup, PUICActionItem, PUICApplicationStatusBarItem, PUICHyphenatedLabel, UIView, UIViewController;
 
 @interface PUICActionViewController : PUICBaseActionViewController <UIGestureRecognizerDelegate>
 {
@@ -25,7 +25,7 @@
     long long _effectiveActionStyle;
     PUICActionItem *_selectedActionItem;
     UIView *_headerView;
-    UILabel *_messageLabel;
+    PUICHyphenatedLabel *_messageLabel;
     PUICApplicationStatusBarItem *_statusBarItem;
     NSMutableArray *_actionButtonCache;
     PUICActionCancelGestureRecognizer *_cancelGestureRecognizer;
@@ -36,7 +36,7 @@
 @property(nonatomic) __weak PUICApplicationStatusBarItem *statusBarItem; // @synthesize statusBarItem=_statusBarItem;
 @property(nonatomic) _Bool visible; // @synthesize visible=_visible;
 @property(nonatomic) _Bool appearing; // @synthesize appearing=_appearing;
-@property(retain, nonatomic) UILabel *messageLabel; // @synthesize messageLabel=_messageLabel;
+@property(retain, nonatomic) PUICHyphenatedLabel *messageLabel; // @synthesize messageLabel=_messageLabel;
 @property(retain, nonatomic) UIView *headerView; // @synthesize headerView=_headerView;
 @property(retain, nonatomic) PUICActionItem *selectedActionItem; // @synthesize selectedActionItem=_selectedActionItem;
 @property(nonatomic) long long effectiveActionStyle; // @synthesize effectiveActionStyle=_effectiveActionStyle;
@@ -59,6 +59,7 @@
 - (_Bool)canBecomeFirstResponder;
 - (void)_actionItemDidUpdateNotification:(id)arg1;
 - (void)_actionGroupDidUpdateNotification:(id)arg1;
+- (void)blurDidGenerate;
 - (void)setupDidDisappear;
 - (void)setupWillDisappear;
 - (void)setupDidAppear;
@@ -66,9 +67,11 @@
 - (void)_setScale:(float)arg1 animated:(_Bool)arg2;
 - (id)_visibleViews;
 - (struct CGPoint)_initialOffsetForView:(id)arg1;
+- (_Bool)_needsLongTitleLayoutForButtons:(id)arg1 withNumberOfRows:(long long)arg2;
 - (void)_layout;
 - (void)dealloc;
 - (void)viewDidDisappear:(_Bool)arg1;
+- (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (id)puic_applicationStatusBarItem;

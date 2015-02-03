@@ -22,8 +22,12 @@
     NSDate *_dateReceived;
     NSMutableSet *_attachmentsContentIdsNotYetSynced;
     NSString *_conversationId;
+    unsigned long long _resendInterval;
+    unsigned long long _contentResendInterval;
 }
 
+@property(nonatomic) unsigned long long contentResendInterval; // @synthesize contentResendInterval=_contentResendInterval;
+@property(nonatomic) unsigned long long resendInterval; // @synthesize resendInterval=_resendInterval;
 @property(nonatomic) _Bool resendRequested; // @synthesize resendRequested=_resendRequested;
 @property(retain, nonatomic) NSString *conversationId; // @synthesize conversationId=_conversationId;
 @property(retain, nonatomic) NSMutableSet *attachmentsContentIdsNotYetSynced; // @synthesize attachmentsContentIdsNotYetSynced=_attachmentsContentIdsNotYetSynced;

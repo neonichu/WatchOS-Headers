@@ -6,12 +6,11 @@
 
 #import "UIViewController.h"
 
-#import "PUICDictationViewControllerDelegate.h"
 #import "PUICQuickboardViewControllerDelegate.h"
 
-@class NSArray, NSAttributedString, NSData, NSFileHandle, NSString, PUICHighlightingView, PUICPlaceholderTextView, UIButton, UIGestureRecognizer, UIImage, UIImageView, UIScrollView, UIView;
+@class NSArray, NSAttributedString, NSData, NSString, PUICHighlightingView, PUICPlaceholderTextView, UIButton, UIGestureRecognizer, UIImage, UIImageView, UIScrollView, UIView;
 
-@interface PUICQuickboardCompositionViewController : UIViewController <PUICQuickboardViewControllerDelegate, PUICDictationViewControllerDelegate>
+@interface PUICQuickboardCompositionViewController : UIViewController <PUICQuickboardViewControllerDelegate>
 {
     UIView *_referenceView;
     UIScrollView *_scrollView;
@@ -31,23 +30,27 @@
     _Bool _areRecipientsEditable;
     _Bool _shouldHideRecipients;
     _Bool _confirmSend;
+    _Bool _compositionChangedToAudio;
     id <PUICQuickboardCompositionViewControllerDelegate> _delegate;
     NSArray *_recipients;
     NSArray *_recentContacts;
     NSArray *_textOptions;
+    unsigned long long _dismissMode;
+    NSString *_languageCode;
     long long _bodyInputMode;
     NSString *_animatedEmojiName;
     NSData *_animatedEmojiGIFData;
     long long _bodyDictationMode;
-    NSFileHandle *_audioRecording;
 }
 
 + (id)composerWithRecipients:(id)arg1 message:(id)arg2;
-@property(retain, nonatomic) NSFileHandle *audioRecording; // @synthesize audioRecording=_audioRecording;
+@property(nonatomic) _Bool compositionChangedToAudio; // @synthesize compositionChangedToAudio=_compositionChangedToAudio;
 @property(nonatomic) long long bodyDictationMode; // @synthesize bodyDictationMode=_bodyDictationMode;
 @property(readonly, nonatomic) NSData *animatedEmojiGIFData; // @synthesize animatedEmojiGIFData=_animatedEmojiGIFData;
 @property(copy, nonatomic) NSString *animatedEmojiName; // @synthesize animatedEmojiName=_animatedEmojiName;
 @property(nonatomic) long long bodyInputMode; // @synthesize bodyInputMode=_bodyInputMode;
+@property(copy, nonatomic) NSString *languageCode; // @synthesize languageCode=_languageCode;
+@property(nonatomic) unsigned long long dismissMode; // @synthesize dismissMode=_dismissMode;
 @property(nonatomic) _Bool confirmSend; // @synthesize confirmSend=_confirmSend;
 @property(nonatomic) _Bool shouldHideRecipients; // @synthesize shouldHideRecipients=_shouldHideRecipients;
 @property(nonatomic) _Bool areRecipientsEditable; // @synthesize areRecipientsEditable=_areRecipientsEditable;
@@ -60,11 +63,11 @@
 @property(copy, nonatomic) NSAttributedString *message;
 - (id)messageAttributes;
 - (void)updateRecipientsLabel;
-- (void)dictationViewController:(id)arg1 didFinishWithAudioFile:(id)arg2;
-- (id)imageForAudioFile:(id)arg1 width:(double)arg2;
+- (id)imageForAudioRecordingOfWidth:(double)arg1;
 - (double)quickboard:(id)arg1 selectionFrameOriginYInDestinationView:(id *)arg2;
 - (void)quickboardInputCancelled:(id)arg1;
 - (void)quickboard:(id)arg1 textEntered:(id)arg2;
+- (void)updateStoreDemoStateOnQuickBoardDimissal;
 - (void)dismissQuickboardWithCompletion:(CDUnknownBlockType)arg1;
 - (void)presentMessageQuickboardAnimated:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)sendButtonTapped;
@@ -81,7 +84,6 @@
 - (void)viewDidLayoutSubviews;
 - (void)presentFromViewController:(id)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)setPrefersStatusBarHidden;
-- (id)backgroundImageView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)dealloc;
 

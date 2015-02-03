@@ -27,10 +27,12 @@
 + (void)_popActionControllerOrbGestureEnabled;
 + (void)_pushActionControllerOrbGestureEnabled:(_Bool)arg1 inWindow:(id)arg2;
 + (void)_initializeActionViewController;
++ (void)_initializeSnapshotWindow;
 + (void)_initializeActionWindow;
 + (void)_setOrbGestureWindow:(id)arg1;
 + (void)_setActionControllerOrbGestureEnabled:(_Bool)arg1 inWindow:(id)arg2;
 + (void)ORBTapGestureRecognizerDidLatch:(id)arg1;
++ (void)_beginPresentingActionController;
 + (void)_orbGestureRecognized:(id)arg1;
 + (id)presentationControllerForPresentedViewController:(id)arg1 presentingViewController:(id)arg2 sourceViewController:(id)arg3;
 + (double)transitionDuration:(id)arg1;

@@ -12,6 +12,7 @@
 
 @optional
 - (void)serviceAllowedTrafficClassifiersDidReset:(IDSService *)arg1;
+- (void)serviceSpaceDidBecomeAvailable:(IDSService *)arg1;
 - (void)service:(IDSService *)arg1 account:(IDSAccount *)arg2 inviteReceivedForSession:(IDSSession *)arg3 fromID:(NSString *)arg4 withContext:(NSData *)arg5;
 - (void)service:(IDSService *)arg1 account:(IDSAccount *)arg2 inviteReceivedForSession:(IDSSession *)arg3 fromID:(NSString *)arg4 withOptions:(NSDictionary *)arg5;
 - (void)service:(IDSService *)arg1 account:(IDSAccount *)arg2 inviteReceivedForSession:(IDSSession *)arg3 fromID:(NSString *)arg4;

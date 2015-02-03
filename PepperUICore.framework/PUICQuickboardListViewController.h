@@ -9,19 +9,25 @@
 #import "PUICTableViewDataSource.h"
 #import "PUICTableViewDelegate.h"
 
-@class NSMutableArray, NSString, PUICTableView, RadiosPreferences, UIButton, UIView;
+@class NSMutableArray, NSString, PUICTableView, PUICTableViewCell, RadiosPreferences, UIButton, UIView;
 
 @interface PUICQuickboardListViewController : PUICQuickboardViewController <PUICTableViewDelegate, PUICTableViewDataSource>
 {
     PUICTableView *_tableView;
     UIView *_trayView;
+    double _shadowImageHeight;
     UIButton *_dictationButton;
     RadiosPreferences *_radiosPreferences;
     NSMutableArray *_cachedHeights;
+    NSMutableArray *_dismissedItemViews;
+    PUICTableViewCell *_selectedCell;
 }
 
+@property(retain, nonatomic) PUICTableViewCell *selectedCell; // @synthesize selectedCell=_selectedCell;
 - (void).cxx_destruct;
+- (void)dismissView:(id)arg1 toPositionY:(double)arg2 delayFactor:(unsigned long long)arg3;
 - (void)addDismissalAnimations;
+- (void)finishDismissalWithOptions:(unsigned long long)arg1;
 - (void)addPresentationAnimations;
 - (void)addContentViewAnimations:(_Bool)arg1;
 - (double)animationDuration;
@@ -32,12 +38,16 @@
 - (void)setupTrayView;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
+- (void)tableView:(id)arg1 didDeselectRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
+- (void)setDismissMode:(unsigned long long)arg1;
+- (void)setConfirmSend:(_Bool)arg1;
 - (double)cachedHeightForListItem:(long long)arg1 width:(double)arg2;
 - (void)setupListView;
 - (id)listView;
 - (id)additionalTrayButtons;
+- (void)didDeselectListItem:(long long)arg1;
 - (void)didSelectListItem:(long long)arg1;
 - (id)cellForListItem:(long long)arg1;
 - (double)heightForListItem:(long long)arg1 width:(double)arg2;
@@ -46,6 +56,7 @@
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
+- (id)initWithDelegate:(id)arg1 dictationMode:(long long)arg2;
 - (id)initWithDelegate:(id)arg1;
 - (void)dealloc;
 

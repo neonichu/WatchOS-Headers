@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSError, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString;
+@class NSDate, NSDictionary, NSError, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
 @interface SYPersistentStore : NSObject
 {
@@ -36,6 +36,7 @@
     struct sqlite3_stmt *_exitFullSync;
     struct sqlite3_stmt *_getIgnoringSyncID;
     struct sqlite3_stmt *_getCurrentSyncID;
+    struct sqlite3_stmt *_getCurrentSyncStartTime;
     struct sqlite3_stmt *_getLastEndedSyncID;
     struct sqlite3_stmt *_getWaitingForSyncID;
     struct sqlite3_stmt *_setWaitingForSyncID;
@@ -48,6 +49,7 @@
     struct sqlite3_stmt *_getSyncIDSOptions;
     _Bool _cachedVersionStale;
     NSString *_peerID;
+    double _unfinishedSyncTimeout;
     NSSet *_cachedChangedSyncIDs;
     unsigned long long _cachedChangedSyncIDsVersion;
 }
@@ -55,15 +57,18 @@
 @property(nonatomic) _Bool cachedVersionStale; // @synthesize cachedVersionStale=_cachedVersionStale;
 @property(nonatomic) unsigned long long cachedChangedSyncIDsVersion; // @synthesize cachedChangedSyncIDsVersion=_cachedChangedSyncIDsVersion;
 @property(retain, nonatomic) NSSet *cachedChangedSyncIDs; // @synthesize cachedChangedSyncIDs=_cachedChangedSyncIDs;
+@property(nonatomic) double unfinishedSyncTimeout; // @synthesize unfinishedSyncTimeout=_unfinishedSyncTimeout;
 @property(readonly, nonatomic) NSString *peerID; // @synthesize peerID=_peerID;
 - (void).cxx_destruct;
 - (void)changeTrackingToggled:(_Bool)arg1;
+- (void)clearAllChanges;
 - (_Bool)objectChanged:(id)arg1 sinceVersion:(unsigned long long)arg2;
 - (unsigned long long)_oldestVersion;
 - (_Bool)logSyncCompletionToRemoteVersion:(unsigned long long)arg1;
 - (_Bool)logChanges:(id)arg1 error:(id *)arg2;
 @property(readonly, nonatomic) unsigned long long lastSeenRemoteVersion;
 @property(readonly, nonatomic) unsigned long long currentLocalVersion;
+@property(readonly, nonatomic) double durationOfLastFullSync;
 @property(nonatomic) _Bool completedSync;
 @property(copy, nonatomic) NSDictionary *fullSyncIDSOptions;
 @property(copy, nonatomic) NSDictionary *fullSyncUserInfo;
@@ -79,11 +84,14 @@
 - (_Bool)reassignCurrentSyncID:(id)arg1;
 - (void)exitFullSyncWithID:(id)arg1 error:(id)arg2;
 - (void)enterFullSyncWithID:(id)arg1 ignoring:(_Bool)arg2;
+@property(readonly, nonatomic) _Bool canStartNewSyncSession;
+@property(copy, nonatomic) NSDate *lastMessageReceived;
+@property(copy, nonatomic) NSDate *overflowResyncTime;
 @property(retain, nonatomic) NSString *vectorClockJSON;
 @property(readonly, nonatomic) unsigned long long changeCount;
-- (void)expireChanges;
 @property(nonatomic) double timeToLive;
 @property(readonly, nonatomic) NSString *path;
+- (void)resetSequenceNumbersForPeer:(id)arg1;
 - (_Bool)sequenceNumberIsDuplicate:(unsigned long long)arg1 forPeer:(id)arg2;
 - (unsigned long long)lastSequenceNumberForPeerID:(id)arg1;
 - (void)setLastSequenceNumber:(unsigned long long)arg1 fromPeer:(id)arg2;

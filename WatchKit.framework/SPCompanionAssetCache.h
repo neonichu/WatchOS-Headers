@@ -20,6 +20,7 @@
 - (void).cxx_destruct;
 - (id)keyFromImageData:(id)arg1;
 - (id)dataForImageWithName:(id)arg1;
+- (id)cachedImages;
 - (void)removeAllImagesFromPermanentCache;
 - (void)removeImageFromPermanentCacheWithName:(id)arg1;
 - (_Bool)addImageToPermanentCache:(id)arg1 withName:(id)arg2;

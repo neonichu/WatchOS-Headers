@@ -12,6 +12,7 @@
 {
     _Bool _selectable;
     _Bool _needsLayout;
+    _Bool _fixedRowHeight;
     UIView<SPInterfaceItem> *_view;
     NSString *_rowName;
     double _rowHeight;
@@ -19,6 +20,7 @@
 
 @property(nonatomic) double rowHeight; // @synthesize rowHeight=_rowHeight;
 @property(retain, nonatomic) NSString *rowName; // @synthesize rowName=_rowName;
+@property(nonatomic) _Bool fixedRowHeight; // @synthesize fixedRowHeight=_fixedRowHeight;
 @property(nonatomic) _Bool needsLayout; // @synthesize needsLayout=_needsLayout;
 @property(nonatomic) _Bool selectable; // @synthesize selectable=_selectable;
 @property(retain, nonatomic) UIView<SPInterfaceItem> *view; // @synthesize view=_view;

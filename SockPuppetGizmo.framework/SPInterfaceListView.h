@@ -10,13 +10,15 @@
 #import "PUICTableViewDelegate.h"
 #import "SPInterfaceActionItem.h"
 
-@class NSBundle, NSDictionary, NSMutableArray, NSString, PUICTableView, UIScrollView;
+@class NSBundle, NSDictionary, NSMutableArray, NSString, PUICTableView;
 
 @interface SPInterfaceListView : UIView <PUICTableViewDataSource, PUICTableViewDelegate, SPInterfaceActionItem>
 {
     _Bool _isUpdatingTable;
     _Bool _tableViewDidReload;
+    _Bool _isInInterfaceBuilder;
     _Bool _enabled;
+    long long _index;
     NSDictionary *_itemDescriptionForIB;
     NSBundle *_bundle;
     NSString *_stringsFileName;
@@ -28,32 +30,31 @@
     double _width;
     double _height;
     NSDictionary *_rowDescriptions;
+    NSDictionary *_rowProperties;
     NSMutableArray *_items;
     PUICTableView *_tableView;
     id _target;
     SEL _action;
     NSDictionary *_selectionSegue;
-    NSMutableArray *_dirtyIndexPaths;
-    UIView *_holdingView;
-    UIView *_wrapperView;
-    UIScrollView *_containingScrollView;
+    NSMutableArray *_dirtyItems;
+    NSMutableArray *_updatedIndexPaths;
     struct CGSize _fixedSize;
     struct CGSize _cachedTableViewContentSize;
 }
 
 @property(nonatomic) _Bool enabled; // @synthesize enabled=_enabled;
-@property(nonatomic) __weak UIScrollView *containingScrollView; // @synthesize containingScrollView=_containingScrollView;
-@property(retain, nonatomic) UIView *wrapperView; // @synthesize wrapperView=_wrapperView;
-@property(retain, nonatomic) UIView *holdingView; // @synthesize holdingView=_holdingView;
+@property(nonatomic) _Bool isInInterfaceBuilder; // @synthesize isInInterfaceBuilder=_isInInterfaceBuilder;
 @property(nonatomic) struct CGSize cachedTableViewContentSize; // @synthesize cachedTableViewContentSize=_cachedTableViewContentSize;
 @property(nonatomic) _Bool tableViewDidReload; // @synthesize tableViewDidReload=_tableViewDidReload;
 @property(nonatomic) _Bool isUpdatingTable; // @synthesize isUpdatingTable=_isUpdatingTable;
-@property(retain, nonatomic) NSMutableArray *dirtyIndexPaths; // @synthesize dirtyIndexPaths=_dirtyIndexPaths;
+@property(retain, nonatomic) NSMutableArray *updatedIndexPaths; // @synthesize updatedIndexPaths=_updatedIndexPaths;
+@property(retain, nonatomic) NSMutableArray *dirtyItems; // @synthesize dirtyItems=_dirtyItems;
 @property(copy, nonatomic) NSDictionary *selectionSegue; // @synthesize selectionSegue=_selectionSegue;
 @property(nonatomic) SEL action; // @synthesize action=_action;
 @property(nonatomic) id target; // @synthesize target=_target;
 @property(retain, nonatomic) PUICTableView *tableView; // @synthesize tableView=_tableView;
 @property(retain, nonatomic) NSMutableArray *items; // @synthesize items=_items;
+@property(copy, nonatomic) NSDictionary *rowProperties; // @synthesize rowProperties=_rowProperties;
 @property(copy, nonatomic) NSDictionary *rowDescriptions; // @synthesize rowDescriptions=_rowDescriptions;
 @property(nonatomic) struct CGSize fixedSize; // @synthesize fixedSize=_fixedSize;
 @property(nonatomic) double height; // @synthesize height=_height;
@@ -66,12 +67,17 @@
 @property(copy, nonatomic) NSString *stringsFileName; // @synthesize stringsFileName=_stringsFileName;
 @property(retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
 @property(retain, nonatomic) NSDictionary *itemDescriptionForIB; // @synthesize itemDescriptionForIB=_itemDescriptionForIB;
+@property(nonatomic) long long index; // @synthesize index=_index;
 - (void).cxx_destruct;
-- (void)crownInputSequencer:(id)arg1 previousDetent:(id *)arg2 nextDetent:(id *)arg3 forOffset:(double)arg4;
 - (void)prepareInterfaceItemForIB;
 - (void)action:(id)arg1 value:(id)arg2;
 - (void)setInterfaceItemValue:(id)arg1 property:(id)arg2;
-- (void)endUpdatingTableAtRunLoopCompletion;
+- (void)finalizeUpdatingTableAtRunLoopCompletion;
+- (void)deleteRowsAtIndexPaths:(id)arg1;
+- (void)insertRowsAtIndexPaths:(id)arg1;
+- (void)reloadData;
+- (void)endUpdatingTable;
+- (void)beginUpdatingTable;
 - (_Bool)_setInterfaceItemValue:(id)arg1 forKey:(id)arg2 property:(id)arg3;
 - (id)_createInterfaceItems:(id)arg1 property:(id)arg2;
 - (void)layoutSubviews;
@@ -92,9 +98,7 @@
 - (id)companionProperty;
 - (void)setTarget:(id)arg1 forInterfaceItemAction:(SEL)arg2;
 - (id)interfaceAction;
-- (void)updateTablePosition;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)didMoveToWindow;
 - (void)dealloc;
 - (id)initWithItemDescription:(id)arg1 bundle:(id)arg2 stringsFileName:(id)arg3;
 

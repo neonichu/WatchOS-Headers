@@ -41,13 +41,13 @@ struct UIEdgeInsets {
     double right;
 };
 
-struct _RunningAverage {
+#pragma mark Typedef'd Structures
+
+typedef struct {
     unsigned long long _field1;
     double _field2[8];
     double _field3[8];
-};
-
-#pragma mark Typedef'd Structures
+} CDStruct_31bcd8b6;
 
 typedef struct {
     _Bool _field1[25];
@@ -78,4 +78,12 @@ typedef struct {
     unsigned int :1;
     unsigned int _field19;
 } CDStruct_1f4d094c;
+
+typedef struct {
+    unsigned int scrollViewWillEndDraggingWithVelocityTargetContentOffset:1;
+    unsigned int scrollViewWillBeginDragging:1;
+    unsigned int scrollViewDidEndDraggingWillDecelerate:1;
+    unsigned int scrollViewWillBeginDecelerating:1;
+    unsigned int scrollViewDidEndDecelerating:1;
+} CDStruct_ab02ea00;
 

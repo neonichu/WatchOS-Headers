@@ -8,7 +8,7 @@
 
 #import "IDSServiceDelegate.h"
 
-@class IDSService, NMSPersistentDictionary, NMSWindowData, NSDate, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
+@class IDSService, NMSPersistentDictionary, NMSWindowData, NSDate, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, _NMSDispatchQueue;
 
 @interface NMSMessageCenter : NSObject <IDSServiceDelegate>
 {
@@ -26,7 +26,7 @@
     unsigned long long _currentBytesInFlight;
     NMSWindowData *_windowData;
     NSObject<OS_dispatch_source> *_windowTimeout;
-    NSObject<OS_dispatch_queue> *_windowQueue;
+    _NMSDispatchQueue *_windowQueue;
     _Bool _enableTransmissionWindow;
     _Bool _delegateRequiresACKs;
     id <NMSMessageCenterDelegate> _delegate;
@@ -52,6 +52,7 @@
 - (void)service:(id)arg1 account:(id)arg2 incomingData:(id)arg3 fromID:(id)arg4 context:(id)arg5;
 - (void)service:(id)arg1 account:(id)arg2 identifier:(id)arg3 hasBeenDeliveredWithContext:(id)arg4;
 - (void)service:(id)arg1 account:(id)arg2 identifier:(id)arg3 didSendWithSuccess:(_Bool)arg4 error:(id)arg5;
+- (void)_obliterate;
 - (void)_handleError:(id)arg1 context:(id)arg2;
 - (void)_sendResponse:(id)arg1;
 - (void)sendRequest:(id)arg1;

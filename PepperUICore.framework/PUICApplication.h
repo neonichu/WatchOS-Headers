@@ -45,10 +45,16 @@
 @property(readonly, nonatomic) UIColor *primaryApplicationColor;
 - (void)dealloc;
 - (_Bool)_shouldDelayTouchesForControlCenter;
+- (_Bool)_statusBarShouldAnimationTitleContextChanges;
+- (void)_setStatusBarShouldAnimateTitleContentChanges:(_Bool)arg1;
 - (unsigned long long)_statusBarGlobalContextLayoutBehavior;
 - (void)_setStatusBarGlobalContextLayoutBehavior:(unsigned long long)arg1;
+- (void)statusBarReleaseDisableTitleTruncationTimerAssertion;
+- (void)statusBarTakeDisableTitleTruncationTimerAssertion;
 - (void)statusBarReleaseDisableAppContextAnimationsAssertion;
 - (void)statusBarTakeDisableAppContextAnimationsAssertion;
+- (id)statusBarCurrentApplicationContextDelegate;
+- (void)setStatusBarAppContextDelegate:(id)arg1;
 - (id)statusBarCurrentApplicationContextDataSource;
 - (void)setStatusBarAppContextDataSource:(id)arg1 animated:(_Bool)arg2;
 - (id)statusBarKeyController:(_Bool)arg1;

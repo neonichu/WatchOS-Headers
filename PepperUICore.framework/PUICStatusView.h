@@ -11,17 +11,23 @@
 @interface PUICStatusView : UIView
 {
     id <PUICStatusViewState> _currentVisibleState;
+    id <PUICStatusViewState> _exitingState;
     _Bool _inTransition;
     CDUnknownBlockType _showIndex;
     CDUnknownBlockType _postTransitionAction;
     CDUnknownBlockType _postTransitionCompletion;
+    _Bool _cancelAnimations;
     id <PUICStatusViewDataSource> _dataSource;
+    unsigned long long _horizontalAlignment;
+    unsigned long long _verticalAlignment;
     NSMutableArray *_states;
 }
 
 + (double)defaultStateTransitionOutDuration;
 + (double)defaultStateTransitionInDuration;
 @property(retain, nonatomic) NSMutableArray *states; // @synthesize states=_states;
+@property(nonatomic) unsigned long long verticalAlignment; // @synthesize verticalAlignment=_verticalAlignment;
+@property(nonatomic) unsigned long long horizontalAlignment; // @synthesize horizontalAlignment=_horizontalAlignment;
 @property(nonatomic) __weak id <PUICStatusViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (void).cxx_destruct;
 - (void)_transitionInToState:(id)arg1 oldState:(id)arg2 nextState:(id)arg3 completion:(CDUnknownBlockType)arg4;
@@ -38,12 +44,16 @@
 - (void)_handlePostTransitionAction;
 - (void)_addPostTransitionAction:(CDUnknownBlockType)arg1 withActionCompletion:(CDUnknownBlockType)arg2;
 - (id)visibleState;
+- (_Bool)isAnimating;
+- (_Bool)isAnyStateActive;
 - (_Bool)isStateActiveByIndex:(unsigned long long)arg1;
 - (_Bool)isStateActive:(id)arg1;
 - (id)stateByIndex:(unsigned long long)arg1;
 - (id)stateForName:(id)arg1;
 - (unsigned long long)numberOfStates;
 - (void)reloadData;
+- (void)layoutSubviews;
+- (void)_alignView:(id)arg1;
 
 @end
 

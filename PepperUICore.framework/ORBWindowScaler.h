@@ -13,17 +13,21 @@
     float _scale;
     float _presentedScale;
     UIView *_scalingView;
-    CDUnknownBlockType _duration;
+    CDUnknownBlockType _durationCurve;
+    CDUnknownBlockType _durationDefaultScaleCurve;
 }
 
-+ (id)sharedScaler;
-@property(copy, nonatomic) CDUnknownBlockType duration; // @synthesize duration=_duration;
+@property(copy, nonatomic) CDUnknownBlockType durationDefaultScaleCurve; // @synthesize durationDefaultScaleCurve=_durationDefaultScaleCurve;
+@property(copy, nonatomic) CDUnknownBlockType durationCurve; // @synthesize durationCurve=_durationCurve;
 @property(nonatomic) __weak UIView *scalingView; // @synthesize scalingView=_scalingView;
 - (void).cxx_destruct;
-- (void)_setDefaultDuration;
-- (void)_setScale:(float)arg1 duration:(double)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_resetDurationDefaultScaleCurve;
+- (void)_resetDurationCurve;
+- (void)_setScale:(float)arg1 view:(id)arg2 duration:(double)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)setDefaultScaleWithWindowScalingBelowWindowLevel:(double)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)setDefaultScaleWithRubberBanding:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)setScale:(float)arg1 completion:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) double scale;
 - (id)init;
 
 @end

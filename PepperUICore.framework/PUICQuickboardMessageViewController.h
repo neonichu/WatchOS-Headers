@@ -24,7 +24,7 @@
 - (id)cellForListItem:(long long)arg1;
 - (double)heightForListItem:(long long)arg1 width:(double)arg2;
 - (long long)numberOfListItems;
-- (id)initWithDelegate:(id)arg1;
+- (id)initWithDelegate:(id)arg1 dictationMode:(long long)arg2;
 - (id)newCell;
 
 @end

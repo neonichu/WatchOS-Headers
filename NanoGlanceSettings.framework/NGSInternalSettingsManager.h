@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class NPSManager, NSMutableArray, NSObject<OS_dispatch_queue>;
+@class NPSManager, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>;
 
 @interface NGSInternalSettingsManager : NSObject
 {
     NSMutableArray *_glanceDefinitions;
     NPSManager *_syncManager;
+    NSArray *_storedSettings;
     NSObject<OS_dispatch_queue> *_queue;
 }
 
@@ -20,6 +21,7 @@
 - (id)_localizedNameForGlance:(id)arg1;
 - (unsigned long long)_numberOfActiveGlances;
 - (_Bool)hasMaximumNumberOfActiveGlances;
+- (id)_loadSettingsArray;
 - (void)loadSettings;
 - (id)glanceIdentifierForGlanceDefinitionAtIndex:(unsigned long long)arg1;
 - (void)_saveSettings;

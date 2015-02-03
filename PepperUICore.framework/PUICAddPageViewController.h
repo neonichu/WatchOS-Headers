@@ -22,19 +22,17 @@
 @property(nonatomic) __weak id <PUICAddPageViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) PUICPageScrollViewController *pageScrollViewController; // @synthesize pageScrollViewController=_pageScrollViewController;
 - (void).cxx_destruct;
-- (void)_stopOnPageBoundary;
-- (void)idleDidChange:(id)arg1;
-- (void)_crownIndicatorVisible:(_Bool)arg1 animated:(_Bool)arg2;
-- (void)_crownIndicatorVisible:(_Bool)arg1;
+- (void)_setCrownIndicatorVisible:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)willDisappearForPageSelection;
 - (void)_activationButtonPress;
+- (void)deactivateAnimated:(_Bool)arg1 additionalAnimations:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)deactivateWithAdditionalAnimations:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)activateAnimated:(_Bool)arg1 additionalAnimations:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)activateWithAdditionalAnimations:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) UIViewController *currentPageViewController;
 @property(readonly, nonatomic) unsigned long long currentPageIndex;
 - (void)viewDidLayoutSubviews;
 - (void)loadView;
-- (void)dealloc;
 - (id)init;
 
 @end

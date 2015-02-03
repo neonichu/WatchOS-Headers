@@ -8,18 +8,22 @@
 
 #import "PUICStatusViewMutableState.h"
 
-@class NSString, UIView;
+@class NSBundle, NSString, UIColor, UIView;
 
 @interface PUICSimpleStatusViewState : NSObject <PUICStatusViewMutableState>
 {
     NSString *_stateName;
-    UIView *_indicatorView;
+    NSString *_imageName;
+    NSBundle *_bundle;
+    UIColor *_tintColor;
     _Bool _statusViewStateActive;
     double _transitionInDuration;
     double _transitionOutDuration;
+    UIView *_indicatorView;
 }
 
-+ (id)simpleStateWithName:(id)arg1 withImage:(id)arg2;
++ (id)simpleStateWithName:(id)arg1 withImageName:(id)arg2 inBundle:(id)arg3 withTintColor:(id)arg4;
+@property(retain, nonatomic) UIView *indicatorView; // @synthesize indicatorView=_indicatorView;
 @property(nonatomic) double transitionOutDuration; // @synthesize transitionOutDuration=_transitionOutDuration;
 @property(nonatomic) double transitionInDuration; // @synthesize transitionInDuration=_transitionInDuration;
 @property(nonatomic, getter=statusViewIsStateActive) _Bool statusViewStateActive; // @synthesize statusViewStateActive=_statusViewStateActive;
@@ -28,7 +32,7 @@
 - (double)statusViewTransitionInDuration;
 - (id)statusViewIndicatorView;
 - (id)statusViewStateName;
-- (id)initWithName:(id)arg1 indicatorView:(id)arg2;
+- (id)initWithName:(id)arg1 withImageName:(id)arg2 inBundle:(id)arg3 withTintColor:(id)arg4;
 - (id)init;
 
 // Remaining properties

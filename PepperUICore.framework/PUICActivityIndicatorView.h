@@ -6,6 +6,8 @@
 
 #import "UIView.h"
 
+@class UIColor;
+
 @interface PUICActivityIndicatorView : UIView
 {
     UIView *_content;
@@ -13,10 +15,14 @@
     unsigned long long _nextState;
     double _spinUpProgress;
     _Bool _hidesWhenStopped;
+    _Bool _ignoreViewHierarchyChange;
     long long _activityIndicatorViewStyle;
     id <PUICActivityIndicatorViewDelegate> _delegate;
+    UIColor *_color;
 }
 
+@property(nonatomic) _Bool ignoreViewHierarchyChange; // @synthesize ignoreViewHierarchyChange=_ignoreViewHierarchyChange;
+@property(retain, nonatomic) UIColor *color; // @synthesize color=_color;
 @property(nonatomic) __weak id <PUICActivityIndicatorViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) _Bool hidesWhenStopped; // @synthesize hidesWhenStopped=_hidesWhenStopped;
 @property(nonatomic) long long activityIndicatorViewStyle; // @synthesize activityIndicatorViewStyle=_activityIndicatorViewStyle;
@@ -30,6 +36,7 @@
 - (void)didMoveToWindow;
 - (void)_enterBackground:(id)arg1;
 - (void)_enterForeground:(id)arg1;
+- (void)setAnimating:(_Bool)arg1 skipBeginOrEndAnimations:(_Bool)arg2;
 @property(nonatomic, getter=isAnimating) _Bool animating; // @dynamic animating;
 - (void)_stopAnimatingNow;
 - (void)animationDidStop:(id)arg1 finished:(_Bool)arg2;

@@ -8,20 +8,20 @@
 
 #import "SPInterfaceItem.h"
 
-@class NSArray, NSBundle, NSDictionary, NSString;
+@class NSArray, NSBundle, NSDictionary, NSString, UIColor;
 
 @interface SPInterfaceGroupView : UIImageView <SPInterfaceItem>
 {
     _Bool _clipsContentsVertically;
     _Bool _isNotification;
-    _Bool _offsetNotificationContent;
     _Bool _isSection;
     _Bool _isSectionDefault;
     _Bool _isRoot;
+    _Bool _isTableRowRoot;
     _Bool _marginsSet;
     _Bool _radiusSet;
     _Bool _heightSet;
-    _Bool _backgroundSet;
+    _Bool _shouldRenderBackgroundColorAsImage;
     _Bool _defaultAnimate;
     id <SPInterfaceDelegate> _delegate;
     long long _groupViewLayout;
@@ -36,6 +36,7 @@
     double _spacing;
     NSBundle *_bundle;
     NSString *_stringsFileName;
+    UIColor *_renderedBackgroundColor;
     NSArray *_allAnimationImages;
     double _defaultDuration;
     struct CGSize _fixedSize;
@@ -45,10 +46,12 @@
 @property(nonatomic) _Bool defaultAnimate; // @synthesize defaultAnimate=_defaultAnimate;
 @property(nonatomic) double defaultDuration; // @synthesize defaultDuration=_defaultDuration;
 @property(copy, nonatomic) NSArray *allAnimationImages; // @synthesize allAnimationImages=_allAnimationImages;
-@property(nonatomic) _Bool backgroundSet; // @synthesize backgroundSet=_backgroundSet;
+@property(retain, nonatomic) UIColor *renderedBackgroundColor; // @synthesize renderedBackgroundColor=_renderedBackgroundColor;
+@property(nonatomic) _Bool shouldRenderBackgroundColorAsImage; // @synthesize shouldRenderBackgroundColorAsImage=_shouldRenderBackgroundColorAsImage;
 @property(nonatomic) _Bool heightSet; // @synthesize heightSet=_heightSet;
 @property(nonatomic) _Bool radiusSet; // @synthesize radiusSet=_radiusSet;
 @property(nonatomic) _Bool marginsSet; // @synthesize marginsSet=_marginsSet;
+@property(nonatomic) _Bool isTableRowRoot; // @synthesize isTableRowRoot=_isTableRowRoot;
 @property(nonatomic) _Bool isRoot; // @synthesize isRoot=_isRoot;
 @property(nonatomic) _Bool isSectionDefault; // @synthesize isSectionDefault=_isSectionDefault;
 @property(nonatomic) _Bool isSection; // @synthesize isSection=_isSection;
@@ -65,7 +68,6 @@
 @property(nonatomic) long long interfaceAlignment; // @synthesize interfaceAlignment=_interfaceAlignment;
 @property(copy, nonatomic) NSDictionary *companionProperty; // @synthesize companionProperty=_companionProperty;
 @property(retain, nonatomic) NSDictionary *itemDescriptionForIB; // @synthesize itemDescriptionForIB=_itemDescriptionForIB;
-@property(nonatomic) _Bool offsetNotificationContent; // @synthesize offsetNotificationContent=_offsetNotificationContent;
 @property(nonatomic) _Bool isNotification; // @synthesize isNotification=_isNotification;
 @property(nonatomic) _Bool clipsContentsVertically; // @synthesize clipsContentsVertically=_clipsContentsVertically;
 @property(nonatomic) long long groupViewLayout; // @synthesize groupViewLayout=_groupViewLayout;
@@ -82,6 +84,7 @@
 - (_Bool)hasDefinedHeight;
 - (_Bool)hasDefinedWidth;
 - (id)visibleSubviews;
+- (id)generateBackgroundPlatterImageWithColor:(id)arg1;
 - (void)setInterfaceItemValue:(id)arg1 property:(id)arg2;
 - (void)setInterfaceItemValue:(id)arg1 forKey:(id)arg2 property:(id)arg3;
 - (_Bool)_setInterfaceItemValue:(id)arg1 forKey:(id)arg2 property:(id)arg3;

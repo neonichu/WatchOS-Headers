@@ -19,9 +19,11 @@
     NSNumber *_assetSyncPlaylistPersistentID;
     NSNumber *_lastFullySentAssetSyncPlaylistPersistentID;
     NSNumber *_lastFullySentAssetSyncPlaylistVersion;
+    NSNumber *_numberOfSyncedAssetSyncPlaylistSongs;
 }
 
 + (id)sharedDefaults;
+@property(copy, nonatomic) NSNumber *numberOfSyncedAssetSyncPlaylistSongs; // @synthesize numberOfSyncedAssetSyncPlaylistSongs=_numberOfSyncedAssetSyncPlaylistSongs;
 @property(copy, nonatomic) NSNumber *lastFullySentAssetSyncPlaylistVersion; // @synthesize lastFullySentAssetSyncPlaylistVersion=_lastFullySentAssetSyncPlaylistVersion;
 @property(copy, nonatomic) NSNumber *lastFullySentAssetSyncPlaylistPersistentID; // @synthesize lastFullySentAssetSyncPlaylistPersistentID=_lastFullySentAssetSyncPlaylistPersistentID;
 @property(copy, nonatomic) NSNumber *assetSyncPlaylistPersistentID; // @synthesize assetSyncPlaylistPersistentID=_assetSyncPlaylistPersistentID;

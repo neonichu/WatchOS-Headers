@@ -32,9 +32,11 @@
     NSXPCConnection *_xpcConnection;
     NSUUID *_clientUUID;
     long long _pairingCompatibilityVersion;
+    unsigned long long _lastUnpairReason;
 }
 
 + (id)sharedInstance;
+@property(nonatomic) unsigned long long lastUnpairReason; // @synthesize lastUnpairReason=_lastUnpairReason;
 @property(nonatomic) long long pairingCompatibilityVersion; // @synthesize pairingCompatibilityVersion=_pairingCompatibilityVersion;
 @property(nonatomic) unsigned short compatibilityState; // @synthesize compatibilityState=_compatibilityState;
 @property(retain, nonatomic) NSUUID *clientUUID; // @synthesize clientUUID=_clientUUID;
@@ -59,6 +61,7 @@
 @property(readonly, nonatomic) unsigned long long status; // @synthesize status=_status;
 - (void)notifyStatus;
 - (void)xpcStatusDidChange:(unsigned long long)arg1;
+- (void)xpcLastUnpairReasonDidChange:(unsigned long long)arg1;
 - (void)xpcCreateDevice:(id)arg1 deviceID:(id)arg2;
 - (void)xpcDeviceDidUnpair:(id)arg1 deviceID:(id)arg2;
 - (void)xpcDeviceIDDidFailToPair:(id)arg1 error:(id)arg2;
@@ -72,12 +75,13 @@
 - (void)xpcSetValue:(id)arg1 forProperty:(id)arg2 deviceID:(id)arg3;
 - (void)_xpcInvalidationHandler;
 - (void)_xpcInterruptionHandler;
-- (void)_xpcFrameworkInitializationSuccessWithStatus:(unsigned long long)arg1 andDevices:(id)arg2 andPairingDeviceID:(id)arg3 andPairingDevice:(id)arg4 hasEntitlements:(_Bool)arg5 andCompatibilityState:(unsigned short)arg6 andCompatibilityVersion:(long long)arg7;
+- (void)_xpcFrameworkInitializationSuccessWithStatus:(unsigned long long)arg1 andDevices:(id)arg2 andPairingDeviceID:(id)arg3 andPairingDevice:(id)arg4 hasEntitlements:(_Bool)arg5 andCompatibilityState:(unsigned short)arg6 andCompatibilityVersion:(long long)arg7 andLastUnpairReason:(unsigned long long)arg8;
 - (_Bool)_xpcEnsureFrameworkInitialized;
 - (void)_xpcInitializeConnection;
 - (void)_addRemoveRecoveryStepIDSFinalize:(_Bool)arg1;
 - (void)_addRemoveRecoveryStepObliterate:(_Bool)arg1 withStatePath:(id)arg2;
 - (void)_addRemoveRecoveryStepResetNVRAM:(_Bool)arg1;
+- (void)_addRemoveRecoveryStepICloudDeletePaymentCards:(_Bool)arg1;
 - (void)_addRemoveRecoveryStepStockholmReset:(_Bool)arg1;
 - (void)_addRemoveRecoveryStepIDSUnpair:(_Bool)arg1 withPairingDeviceID:(id)arg2;
 - (void)_addRemoveRecoveryStepUnpairBluetooth:(_Bool)arg1 withPairingDeviceID:(id)arg2;
@@ -90,6 +94,7 @@
 - (void)_setObliterationEnabled:(_Bool)arg1;
 - (void)_triggerRecovery;
 - (id)_recoveryDescription;
+- (void)retriggerUnpairInfoDialog;
 - (unsigned int)minorVersion;
 - (unsigned int)majorVersion;
 - (_Bool)isPaired;
@@ -97,9 +102,11 @@
 - (id)pairingStorePath;
 - (void)resumePairingClientCrashMonitoring;
 - (void)suspendPairingClientCrashMonitoring;
+- (void)abortPairingWithReason:(id)arg1;
 - (void)abortPairing;
 - (void)waitForPairingStorePathPairingID:(CDUnknownBlockType)arg1;
 - (void)pairingStorePathPairingID:(CDUnknownBlockType)arg1;
+- (void)_pairingStorePathPairingID:(CDUnknownBlockType)arg1;
 - (void)enterCompatibilityState:(unsigned short)arg1 forDevice:(id)arg2;
 - (void)unpairWithDevice:(id)arg1 shouldObliterate:(_Bool)arg2 operationHasBegun:(CDUnknownBlockType)arg3;
 - (void)notifyPairingShouldContinue;

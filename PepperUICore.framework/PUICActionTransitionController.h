@@ -23,6 +23,7 @@
 + (id)presentationController;
 - (void).cxx_destruct;
 - (void)_reset;
+- (void)_endTransition:(_Bool)arg1;
 - (void)finishTransition;
 - (void)cancelTransition;
 - (void)startInteractiveTransition:(id)arg1;

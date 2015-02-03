@@ -12,7 +12,7 @@
 #import "UIApplicationDelegate.h"
 #import "UIGestureRecognizerDelegate.h"
 
-@class NSDictionary, NSString, PUICQuickboardMessageViewController, SPCompanionConnection, SPInterfaceViewController, SPPageViewController, UIColor, UIImage, UIView, UIWindow;
+@class NSDictionary, NSString, PUICQuickboardViewController, SPCompanionConnection, SPInterfaceViewController, SPPageViewController, UIColor, UIImage, UIView, UIWindow;
 
 @interface SPApplicationDelegate : NSObject <SPInterfaceViewControllerDelegate, SPCompanionConnectionDelegate, UIGestureRecognizerDelegate, PUICQuickboardViewControllerDelegate, UIApplicationDelegate>
 {
@@ -27,7 +27,7 @@
     NSString *_stringsFileName;
     UIColor *_applicationColor;
     SPPageViewController *_pageViewController;
-    PUICQuickboardMessageViewController *_textInputViewController;
+    PUICQuickboardViewController *_textInputViewController;
     double _busyDisplayTime;
     UIView *_busyView;
     NSDictionary *_dynamicNotificationInterface;
@@ -58,7 +58,7 @@
 @property(nonatomic) double busyDisplayTime; // @synthesize busyDisplayTime=_busyDisplayTime;
 @property(nonatomic) _Bool launchedFromNotification; // @synthesize launchedFromNotification=_launchedFromNotification;
 @property(nonatomic) _Bool launchedWithOptions; // @synthesize launchedWithOptions=_launchedWithOptions;
-@property(retain, nonatomic) PUICQuickboardMessageViewController *textInputViewController; // @synthesize textInputViewController=_textInputViewController;
+@property(retain, nonatomic) PUICQuickboardViewController *textInputViewController; // @synthesize textInputViewController=_textInputViewController;
 @property(retain, nonatomic) SPPageViewController *pageViewController; // @synthesize pageViewController=_pageViewController;
 @property(retain, nonatomic) UIColor *applicationColor; // @synthesize applicationColor=_applicationColor;
 @property(copy, nonatomic) NSString *stringsFileName; // @synthesize stringsFileName=_stringsFileName;
@@ -67,6 +67,9 @@
 @property(readonly, copy, nonatomic) NSString *launchMode; // @synthesize launchMode=_launchMode;
 @property(retain, nonatomic) UIWindow *window; // @synthesize window=_window;
 - (void).cxx_destruct;
+- (void)updateForSimulatorLockedState:(_Bool)arg1 viewController:(id)arg2;
+- (void)registerForSimulatorLockState;
+- (id)currentViewController;
 - (void)handleGlanceTap:(id)arg1;
 - (void)setupNotificationActionButtons;
 - (void)presentNotificationViewController;
@@ -83,23 +86,25 @@
 - (void)launchGizmoAppForCompanionAppWithIdentifier:(id)arg1 withURLString:(id)arg2;
 - (void)interfaceViewController:(id)arg1 setValue:(id)arg2 forKey:(id)arg3;
 - (void)interfaceViewController:(id)arg1 sendAction:(id)arg2 withValue:(id)arg3;
-- (void)appWithRootInterfaceViewController:(id)arg1 performActionForUserActivity:(id)arg2;
 - (void)appWithRootInterfaceViewController:(id)arg1 performActionWithItemID:(id)arg2 forNotificationID:(id)arg3;
 - (void)interfaceViewControllerDidDeactivate:(id)arg1;
 - (void)interfaceViewControllerWillActivate:(id)arg1;
 - (void)interfaceViewControllerRelease:(id)arg1;
-- (void)interfaceViewController:(id)arg1 createCompanionControllerClass:(id)arg2 properties:(id)arg3;
+- (void)interfaceViewController:(id)arg1 createCompanionControllerClass:(id)arg2 properties:(id)arg3 initializationContextID:(id)arg4;
 - (void)extensionDidTerminate:(id)arg1;
 - (void)companionConnection:(id)arg1 interfaceViewController:(id)arg2 presentNotificationWithType:(id)arg3;
 - (void)companionConnection:(id)arg1 userActivity:(id)arg2;
 - (void)companionConnection:(id)arg1 interfaceViewControllerDismissViewController:(id)arg2;
-- (void)companionConnection:(id)arg1 interfaceViewController:(id)arg2 presentViewControllers:(id)arg3;
-- (void)companionConnection:(id)arg1 interfaceViewController:(id)arg2 presentViewController:(id)arg3 info:(id)arg4;
-- (void)companionConnection:(id)arg1 resequenceRootInterfaceViewControllers:(id)arg2;
+- (void)companionConnection:(id)arg1 interfaceViewController:(id)arg2 presentViewControllers:(id)arg3 initializationContextIDs:(id)arg4;
+- (void)companionConnection:(id)arg1 interfaceViewController:(id)arg2 presentViewController:(id)arg3 info:(id)arg4 initializationContextID:(id)arg5;
+- (void)companionConnection:(id)arg1 removeRootInterfaceViewControllerAtIndexes:(id)arg2;
+- (void)companionConnection:(id)arg1 moveRootInterfaceViewControllerAtIndex:(long long)arg2 toIndex:(long long)arg3;
+- (void)companionConnection:(id)arg1 insertRootInterfaceViewControllerWithNames:(id)arg2 atIndexes:(id)arg3 initializationContextIDs:(id)arg4;
+- (void)companionConnection:(id)arg1 reloadRootInterfaceViewControllersWithNames:(id)arg2 initializationContextIDs:(id)arg3;
 - (void)companionConnection:(id)arg1 interfaceViewControllerBecomeCurrentPageViewController:(id)arg2;
 - (void)companionConnection:(id)arg1 interfaceViewControllerPopToRootViewController:(id)arg2;
 - (void)companionConnection:(id)arg1 interfaceViewControllerPopViewController:(id)arg2;
-- (void)companionConnection:(id)arg1 interfaceViewController:(id)arg2 pushViewController:(id)arg3;
+- (void)companionConnection:(id)arg1 interfaceViewController:(id)arg2 pushViewController:(id)arg3 initializationContextID:(id)arg4;
 - (void)companionConnection:(id)arg1 interfaceViewController:(id)arg2 setValue:(id)arg3 forKey:(id)arg4 property:(id)arg5;
 - (_Bool)application:(id)arg1 openURL:(id)arg2 sourceApplication:(id)arg3 annotation:(id)arg4;
 - (id)primaryApplicationColor;

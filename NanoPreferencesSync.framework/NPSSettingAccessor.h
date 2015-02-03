@@ -14,7 +14,6 @@
     NSString *_domain;
     long long _type;
     NSString *_containerPath;
-    NSString *_resolvedPerGizmoDomain;
     NPSDomainAccessor *_nanoDomainAccessor;
 }
 
@@ -22,7 +21,6 @@
 + (id)serializeObject:(id)arg1 error:(id *)arg2;
 @property(nonatomic) _Bool hasChangesToWrite; // @synthesize hasChangesToWrite=_hasChangesToWrite;
 @property(retain, nonatomic) NPSDomainAccessor *nanoDomainAccessor; // @synthesize nanoDomainAccessor=_nanoDomainAccessor;
-@property(retain, nonatomic) NSString *resolvedPerGizmoDomain; // @synthesize resolvedPerGizmoDomain=_resolvedPerGizmoDomain;
 @property(retain, nonatomic) NSString *containerPath; // @synthesize containerPath=_containerPath;
 @property(nonatomic) long long type; // @synthesize type=_type;
 @property(retain, nonatomic) NSString *domain; // @synthesize domain=_domain;
@@ -35,7 +33,6 @@
 - (_Bool)synchronizeForWriting;
 - (_Bool)synchronizeForReading;
 - (id)initWithNanoDomain:(id)arg1;
-- (id)initWithPerGizmoUserDefaultsDomain:(id)arg1;
 - (id)initWithUserDefaultsDomain:(id)arg1 containerPath:(id)arg2;
 - (id)initWithUserDefaultsDomain:(id)arg1 container:(id)arg2;
 

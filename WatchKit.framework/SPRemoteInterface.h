@@ -14,8 +14,6 @@
 {
     id <SPRemoteInterfaceDataDelegateProtocol> _dataDelegate;
     NSMutableArray *_activeComplicationsConnections;
-    id _interfaceCreationContext;
-    NSMutableArray *_interfaceCreationContexts;
     id _runLoopObserver;
     NSMutableDictionary *_interfaceControllers;
     NSMutableDictionary *_interfaceControllersOwners;
@@ -25,19 +23,21 @@
     CDUnknownBlockType _textInputCompletion;
 }
 
-+ (id)controller:(id)arg1 setupProperties:(id)arg2 index:(long long)arg3 viewControllerID:(id)arg4 classForType:(CDUnknownFunctionPointerType)arg5;
++ (id)controller:(id)arg1 setupProperties:(id)arg2 viewControllerID:(id)arg3 tableIndex:(long long)arg4 rowIndex:(long long)arg5 classForType:(CDUnknownFunctionPointerType)arg6;
 + (void)notificationController:(id)arg1 showNotificationInterfaceType:(long long)arg2;
-+ (void)sendCacheRequest:(id)arg1 clientIdentifier:(id)arg2;
 + (void)sendCacheRequestMessage:(id)arg1;
 + (void)sendCacheRequest:(id)arg1;
 + (_Bool)openParentApplication:(id)arg1 reply:(CDUnknownBlockType)arg2;
-+ (void)updateUserActivity:(id)arg1 userInfo:(id)arg2 interfaceController:(id)arg3;
++ (void)updateUserActivity:(id)arg1 userInfo:(id)arg2 webpageURL:(id)arg3 interfaceController:(id)arg4;
 + (void)controllerDismissTextInputController:(id)arg1;
 + (void)controller:(id)arg1 presentTextInputControllerWithSuggestions:(id)arg2 allowedInputMode:(id)arg3 completion:(CDUnknownBlockType)arg4;
 + (void)controllerDismiss:(id)arg1;
 + (void)controller:(id)arg1 presentInterfaceControllers:(id)arg2 contexts:(id)arg3;
 + (void)controller:(id)arg1 presentInterfaceController:(id)arg2 context:(id)arg3;
 + (void)controllerBecomeCurrentPage:(id)arg1;
++ (void)removePageControllerAtIndexes:(id)arg1;
++ (void)movePageControllerAtIndex:(long long)arg1 toIndex:(long long)arg2;
++ (void)insertPageControllerAtIndexes:(id)arg1 withNames:(id)arg2 contexts:(id)arg3;
 + (void)reloadRootControllersWithNames:(id)arg1 contexts:(id)arg2;
 + (void)controllerPopToRoot:(id)arg1;
 + (void)controllerPop:(id)arg1;
@@ -51,6 +51,7 @@
 + (void)_setupStorageForController:(id)arg1;
 + (id)SerializablePropertyValue:(id)arg1;
 + (void)_updateAccessibility;
++ (id)cacheIdentifier;
 + (id)_remoteIdentifier;
 + (id)startRemoteInterface;
 @property(copy, nonatomic) CDUnknownBlockType textInputCompletion; // @synthesize textInputCompletion=_textInputCompletion;
@@ -60,8 +61,6 @@
 @property(retain, nonatomic) NSMutableDictionary *interfaceControllersOwners; // @synthesize interfaceControllersOwners=_interfaceControllersOwners;
 @property(retain, nonatomic) NSMutableDictionary *interfaceControllers; // @synthesize interfaceControllers=_interfaceControllers;
 @property(retain, nonatomic) id runLoopObserver; // @synthesize runLoopObserver=_runLoopObserver;
-@property(retain, nonatomic) NSMutableArray *interfaceCreationContexts; // @synthesize interfaceCreationContexts=_interfaceCreationContexts;
-@property(retain, nonatomic) id interfaceCreationContext; // @synthesize interfaceCreationContext=_interfaceCreationContext;
 @property(retain, nonatomic) NSMutableArray *activeComplicationsConnections; // @synthesize activeComplicationsConnections=_activeComplicationsConnections;
 @property(retain, nonatomic) id <SPRemoteInterfaceDataDelegateProtocol> dataDelegate; // @synthesize dataDelegate=_dataDelegate;
 - (void).cxx_destruct;
@@ -89,23 +88,27 @@
 - (void)controllerDismissTextInputController:(id)arg1;
 - (void)controllerPresentTextInputController:(id)arg1 allowedInputMode:(id)arg2 suggestions:(id)arg3;
 - (void)controllerDismiss:(id)arg1;
-- (void)controller:(id)arg1 presentInterfaceControllers:(id)arg2;
-- (void)controller:(id)arg1 presentInterfaceController:(id)arg2;
+- (void)controller:(id)arg1 presentInterfaceControllers:(id)arg2 initializationContextIDs:(id)arg3;
+- (void)controller:(id)arg1 presentInterfaceController:(id)arg2 initializationContextID:(id)arg3;
 - (void)controllerBecomeCurrentPage:(id)arg1;
-- (void)reloadRootControllersWithNames:(id)arg1;
+- (void)removePageControllerAtIndexes:(id)arg1;
+- (void)movePageControllerAtIndex:(long long)arg1 toIndex:(long long)arg2;
+- (void)insertPageControllerAtIndexes:(id)arg1 withNames:(id)arg2 initializationContextIDs:(id)arg3;
+- (void)reloadRootControllersWithNames:(id)arg1 initializationContextIDs:(id)arg2;
 - (void)controllerPopToRoot:(id)arg1;
 - (void)controllerPop:(id)arg1;
-- (void)controller:(id)arg1 pushInterfaceController:(id)arg2;
-- (void)sendCacheRequest:(id)arg1 clientIdentifier:(id)arg2;
+- (void)controller:(id)arg1 pushInterfaceController:(id)arg2 initializationContextID:(id)arg3;
+- (id)interfaceCreationContextForID:(id)arg1;
+- (id)storeInterfaceCreationContext:(id)arg1;
 - (void)sendCacheRequestMessage:(id)arg1;
-- (void)sendCacheRequest:(id)arg1;
 - (void)launchGizmoAppForCompanionAppWithIdentifier:(id)arg1 withURLString:(id)arg2;
 - (_Bool)openParentApplication:(id)arg1 reply:(CDUnknownBlockType)arg2;
-- (void)updateUserActivity:(id)arg1 userInfo:(id)arg2 controller:(id)arg3;
+- (void)updateUserActivity:(id)arg1 userInfo:(id)arg2 webpageURL:(id)arg3 controller:(id)arg4;
 - (void)fetchNotificationForNotificationID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)sendComplicationObject:(id)arg1;
 - (void)sendTimingInfo:(id)arg1 clientIdentifiers:(id)arg2 index:(long long)arg3;
 - (void)sendPlist:(id)arg1 clientIdentifiers:(id)arg2;
+- (void)_callDidDeactivate;
 - (id)_setupSignal:(int)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)_setupSignalHandlers;
 - (void)dealloc;

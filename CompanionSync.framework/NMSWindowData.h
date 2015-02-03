@@ -35,8 +35,11 @@
 @property(readonly, nonatomic) unsigned long long countOfAllMessagesInFlight;
 @property(readonly, nonatomic) unsigned long long lengthOfAllMessagesInFlight;
 @property(readonly, nonatomic) NSArray *expiredMessageIDs;
+- (unsigned long long)removeAndReturnLengthOfMessagesWithIDs:(id)arg1;
 - (unsigned long long)removeAndReturnLengthOfMessageWithID:(id)arg1;
 - (void)addMessageWithID:(id)arg1 ofLength:(unsigned long long)arg2 timeoutTime:(double)arg3;
+- (void)removeAllMessages;
+- (_Bool)_transaction:(_Bool)arg1 block:(CDUnknownBlockType)arg2;
 - (_Bool)_openDBForceRecreate:(_Bool)arg1;
 - (int)_getSchemaVersion;
 - (void)dealloc;

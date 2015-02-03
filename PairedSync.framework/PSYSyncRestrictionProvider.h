@@ -26,6 +26,9 @@
 @property(readonly, nonatomic) NSString *serviceName; // @synthesize serviceName=_serviceName;
 @property(nonatomic) __weak id <PSYSyncRestrictionProviderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)unregisterForFirstKeybagUnlockNotification;
+- (void)registerForFirstKeybagUnlockNotification;
+- (void)keybagStateChanged;
 - (void)deviceSyncStateDidChange:(unsigned long long)arg1;
 - (void)pairingUpdated;
 - (void)_reloadPersistentData;

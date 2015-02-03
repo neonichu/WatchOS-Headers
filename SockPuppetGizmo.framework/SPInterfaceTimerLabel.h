@@ -6,7 +6,7 @@
 
 #import <SockPuppetGizmo/SPInterfaceLabel.h>
 
-@class NSDate, NSDateComponentsFormatter, NSTimer;
+@class NSDate, NSDateComponentsFormatter, NSNumber, NSTimer;
 
 @interface SPInterfaceTimerLabel : SPInterfaceLabel
 {
@@ -16,8 +16,12 @@
     NSDate *_date;
     NSTimer *_timer;
     double _updateInterval;
+    NSNumber *_forcedTimeInterval;
+    struct CGSize _cachedSize;
 }
 
+@property(copy, nonatomic) NSNumber *forcedTimeInterval; // @synthesize forcedTimeInterval=_forcedTimeInterval;
+@property(nonatomic) struct CGSize cachedSize; // @synthesize cachedSize=_cachedSize;
 @property(nonatomic) double updateInterval; // @synthesize updateInterval=_updateInterval;
 @property(retain, nonatomic) NSTimer *timer; // @synthesize timer=_timer;
 @property(nonatomic) _Bool countdown; // @synthesize countdown=_countdown;
@@ -25,7 +29,6 @@
 @property(nonatomic) _Bool timerEnabled; // @synthesize timerEnabled=_timerEnabled;
 @property(retain, nonatomic) NSDateComponentsFormatter *formatter; // @synthesize formatter=_formatter;
 - (void).cxx_destruct;
-- (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)setInterfaceItemValue:(id)arg1 property:(id)arg2;
 - (void)applyMonospaceNumbers;
 - (void)didMoveToWindow;

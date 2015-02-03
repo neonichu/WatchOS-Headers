@@ -14,11 +14,12 @@
     long long _visibilityCount;
 }
 
-+ (id)snapshotWindow;
 - (void).cxx_destruct;
 - (void)popVisible;
 - (void)pushVisible;
 - (void)setSnapshot:(id)arg1;
+- (id)init;
+- (id)initWithFrame:(struct CGRect)arg1;
 
 @end
 

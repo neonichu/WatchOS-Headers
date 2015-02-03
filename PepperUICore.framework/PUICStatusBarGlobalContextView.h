@@ -9,13 +9,16 @@
 #import "PUICStatusViewDataSource.h"
 #import "UIStatusBarServerClient.h"
 
-@class NSArray, NSDictionary, NSMutableArray, NSString, PUICStatusView, UILabel, UIStatusBarServer;
+@class NSArray, NSDictionary, NSMutableArray, NSString, UILabel, UIStatusBarServer, _PUICStatusBarGlobalContextIndicatorsView;
 
 @interface PUICStatusBarGlobalContextView : UIView <UIStatusBarServerClient, PUICStatusViewDataSource>
 {
     UILabel *_time;
-    PUICStatusView *_statusView;
+    _PUICStatusBarGlobalContextIndicatorsView *_indicatorsView;
+    double _indicatorsOffset;
+    _Bool _animatingTime;
     _Bool _tookAssertion;
+    _Bool _networkActivity;
     NSArray *_statusViewStates;
     NSDictionary *_statusViewStatesMap;
     NSMutableArray *_animationsQueue;
@@ -49,6 +52,7 @@
 - (void)setIndicatorsHidden:(_Bool)arg1 animation:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)setIndicatorsHidden:(_Bool)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 - (_Bool)areIndicatorsHidden;
+- (void)_activityIndicatorChanged:(id)arg1;
 - (void)_adjustStatesForData:(const CDStruct_1f4d094c *)arg1 animated:(_Bool)arg2 forceCycle:(_Bool)arg3;
 - (void)_updateTime:(id)arg1;
 - (void)statusBarServer:(id)arg1 didReceiveDoubleHeightStatusString:(id)arg2 forStyle:(long long)arg3;
@@ -70,6 +74,7 @@
 - (unsigned long long)layoutBehavior;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (id)_getInitialTimeString;
 - (id)init;
 
 // Remaining properties
